@@ -14,16 +14,17 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.driver
+package uk.gov.hmrc.test.ui.pages
 
-import com.typesafe.scalalogging.LazyLogging
-import org.openqa.selenium.WebDriver
-import uk.gov.hmrc.webdriver.SingletonDriver
+object AreYouBiologicalFather extends BasePage {
 
-trait BrowserDriver extends LazyLogging {
-  logger.info(
-    s"Instantiating Browser: ${sys.props.getOrElse("browser", "'browser' System property not set. This is required")}"
-  )
+  val areYouBiologicalFather = "Are you the child’s biological father?"
 
-  implicit lazy val driver: WebDriver = SingletonDriver.getInstance()
+  def selectYes: ResponsibilityForChild.type = {
+    onPage(areYouBiologicalFather)
+    click("value")
+    submitPage()
+    ResponsibilityForChild
+  }
+
 }

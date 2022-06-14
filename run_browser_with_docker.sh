@@ -51,7 +51,7 @@ fi
 #######################################
 
 docker pull ${BROWSER} \
-  && docker run \
+  && docker run --net=host \
   -d \
   --rm \
   --name "${1}" \
