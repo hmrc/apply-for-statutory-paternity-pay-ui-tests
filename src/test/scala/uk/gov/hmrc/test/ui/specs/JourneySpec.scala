@@ -94,7 +94,7 @@ class JourneySpec extends BaseSpec {
       AreYouBiologicalFather.selectYes
       ResponsibilityForChild.selectNo
 
-      Then("I should be instructed to use a different form")
+      Then("I will be told I am not eligible for Statutory Paternity Pay ")
       Ineligible.result should be("You are not eligible for Statutory Paternity Pay")
     }
   }
