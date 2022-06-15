@@ -16,22 +16,15 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-object AreYouBiologicalFather extends BasePage {
+object DoYouWantPayToStartOnDueDate extends BasePage {
 
-  val areYouBiologicalFather = "Are you the child’s biological father?"
+  val doYouWantPayToStartOnDueDate = "Would you like your Statutory Paternity Pay to start on the day the baby is due?"
 
-  def selectYes: ResponsibilityForChild.type = {
-    onPage(areYouBiologicalFather)
-    click("value")
-    submitPage()
-    ResponsibilityForChild
-  }
-
-  def selectNo: MarriageCivilPartnershipWithMother.type = {
-    onPage(areYouBiologicalFather)
+  def selectNo: DateYouWantSPToStart.type = {
+    onPage(doYouWantPayToStartOnDueDate)
     click("value-no")
     submitPage()
-    MarriageCivilPartnershipWithMother
+    DateYouWantSPToStart
   }
 
 }

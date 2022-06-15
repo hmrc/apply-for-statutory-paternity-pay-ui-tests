@@ -27,4 +27,11 @@ object TimeOffWork extends BasePage {
     WhatIsYourName
   }
 
+  def selectNo: SupportChildsMother.type = {
+    onPage(timeOffWork)
+    click("value-no")
+    submitPage()
+    SupportChildsMother
+  }
+
 }

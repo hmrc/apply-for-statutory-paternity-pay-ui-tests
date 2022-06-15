@@ -16,22 +16,15 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-object AreYouBiologicalFather extends BasePage {
+object EnduringFamilyRelationship extends BasePage {
 
-  val areYouBiologicalFather = "Are you the child’s biological father?"
+  val enduringFamilyRelationship = "Do you live with the mother and child in an enduring family relationship?"
 
   def selectYes: ResponsibilityForChild.type = {
-    onPage(areYouBiologicalFather)
+    onPage(enduringFamilyRelationship)
     click("value")
     submitPage()
     ResponsibilityForChild
-  }
-
-  def selectNo: MarriageCivilPartnershipWithMother.type = {
-    onPage(areYouBiologicalFather)
-    click("value-no")
-    submitPage()
-    MarriageCivilPartnershipWithMother
   }
 
 }

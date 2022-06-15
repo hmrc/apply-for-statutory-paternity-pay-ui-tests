@@ -16,22 +16,13 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-object AreYouBiologicalFather extends BasePage {
+object UseDifferentForm extends BasePage {
 
-  val areYouBiologicalFather = "Are you the child’s biological father?"
+  val useDifferentForm = "You must use a different form to claim Statutory Paternity Pay"
 
-  def selectYes: ResponsibilityForChild.type = {
-    onPage(areYouBiologicalFather)
-    click("value")
-    submitPage()
-    ResponsibilityForChild
-  }
-
-  def selectNo: MarriageCivilPartnershipWithMother.type = {
-    onPage(areYouBiologicalFather)
-    click("value-no")
-    submitPage()
-    MarriageCivilPartnershipWithMother
+  def result: String = {
+    onPage(useDifferentForm)
+    findByClassName("govuk-panel__title").getText
   }
 
 }

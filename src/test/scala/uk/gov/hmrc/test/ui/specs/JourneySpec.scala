@@ -45,5 +45,58 @@ class JourneySpec extends BaseSpec {
       confirmAnswers
       result should be("Your application form is ready to send to your employer")
     }
+
+    Scenario(
+      "Partner supporting the mother applying for SPP for unborn baby",
+      ZapTests
+    ) {
+      Given("I am on the Apply for SSP Home Page")
+      ApplyForSPPHomePage.loadPage.startApplication
+
+      When("I provide details")
+      AreYouPartnerOrAdoptingChild.selectNo
+      AreYouBiologicalFather.selectNo
+      MarriageCivilPartnershipWithMother.selectNo
+      EnduringFamilyRelationship.selectYes
+      ResponsibilityForChild.selectYes
+      TimeOffWork.selectNo
+      SupportChildsMother.selectYes.enterName.enterNino
+      HasBabyBeenBornYet.selectNo.enterBabyDueDate
+      DoYouWantPayToStartOnDueDate.selectNo.enterStartDateDue.select1Week
+
+      Then("I confirm my answers and will be given the option to download the form")
+      confirmAnswers
+      Confirmation.result should be("Your application form is ready to send to your employer")
+    }
+
   }
+
+  Feature("Kickout Journeys") {
+    Scenario("Applicant is becoming adoptive or parental order parents", ZapTests) {
+
+      Given("I am on the Apply for SSP Home Page")
+      ApplyForSPPHomePage.loadPage.startApplication
+
+      When("I select yes to becoming adoptive or parental order parents")
+      AreYouPartnerOrAdoptingChild.selectYes
+
+      Then("I should be instructed to use a different form")
+      UseDifferentForm.result should be("You must use a different form to claim Statutory Paternity Pay")
+    }
+
+    Scenario("Applicant is not eligible for Statutory Paternity Pay", ZapTests) {
+
+      Given("I am on the Apply for SSP Home Page")
+      ApplyForSPPHomePage.loadPage.startApplication
+
+      When("I answer that I will not have responsibility for caring for the child")
+      AreYouPartnerOrAdoptingChild.selectNo
+      AreYouBiologicalFather.selectYes
+      ResponsibilityForChild.selectNo
+
+      Then("I should be instructed to use a different form")
+      Ineligible.result should be("You are not eligible for Statutory Paternity Pay")
+    }
+  }
+
 }

@@ -27,4 +27,11 @@ object ResponsibilityForChild extends BasePage {
     TimeOffWork
   }
 
+  def selectNo: Ineligible.type = {
+    onPage(responsibilityForChild)
+    click("value-no")
+    submitPage()
+    Ineligible
+  }
+
 }

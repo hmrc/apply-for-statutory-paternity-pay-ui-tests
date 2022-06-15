@@ -27,4 +27,11 @@ object HasBabyBeenBornYet extends BasePage {
     BabyDOB
   }
 
+  def selectNo: BabyDueDate.type = {
+    onPage(hasBabyBeenBornYet)
+    click("value-no")
+    submitPage()
+    BabyDueDate
+  }
+
 }

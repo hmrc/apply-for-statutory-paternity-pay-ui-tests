@@ -20,6 +20,7 @@ import org.openqa.selenium.{By, WebElement}
 import org.scalatest.matchers.should.Matchers
 import uk.gov.hmrc.test.ui.driver.BrowserDriver
 
+import java.time.LocalDate
 import scala.util.Random
 
 trait BasePage extends BrowserDriver with Matchers {
@@ -29,17 +30,36 @@ trait BasePage extends BrowserDriver with Matchers {
   def click(id: String): Unit                        = findByID(id).click()
   def findByClassName(className: String): WebElement = driver.findElement(By.className(className))
   def enter(id: String, text: String): Unit          = findByID(id).sendKeys(text)
+
+  val yesterdayDay: String   = LocalDate.now.minusDays(1).getDayOfMonth.toString
+  val yesterdayMonth: String = LocalDate.now.minusDays(1).getMonthValue.toString
+  val yesterdayYear: String  = LocalDate.now.minusDays(1).getYear.toString
+
+  val tomorrowDay: String   = LocalDate.now.plusDays(1).getDayOfMonth.toString
+  val tomorrowMonth: String = LocalDate.now.plusDays(1).getMonthValue.toString
+  val tomorrowYear: String  = LocalDate.now.plusDays(1).getYear.toString
+
+  val todayDay: String   = LocalDate.now.getDayOfMonth.toString
+  val todayMonth: String = LocalDate.now.getMonthValue.toString
+  val todayYear: String  = LocalDate.now.getYear.toString
+
   def enterDOB(): Unit = {
-    findByID("value.day").sendKeys("1")
-    findByID("value.month").sendKeys("1")
-    findByID("value.year").sendKeys("2022")
+    findByID("value.day").sendKeys(yesterdayDay)
+    findByID("value.month").sendKeys(yesterdayMonth)
+    findByID("value.year").sendKeys(yesterdayYear)
   }
   def enterDate(): Unit = {
-    findByID("value.day").sendKeys("2")
-    findByID("value.month").sendKeys("1")
-    findByID("value.year").sendKeys("2022")
+    findByID("value.day").sendKeys(todayDay)
+    findByID("value.month").sendKeys(todayMonth)
+    findByID("value.year").sendKeys(todayYear)
   }
-  val random                                         = new Random
+
+  def enterTomorrowDate(): Unit = {
+    findByID("value.day").sendKeys(tomorrowDay)
+    findByID("value.month").sendKeys(tomorrowMonth)
+    findByID("value.year").sendKeys(tomorrowYear)
+  }
+  val random = new Random
 
   def submitPage(): Unit =
     driver.findElement(By.className(continueButton)).click()

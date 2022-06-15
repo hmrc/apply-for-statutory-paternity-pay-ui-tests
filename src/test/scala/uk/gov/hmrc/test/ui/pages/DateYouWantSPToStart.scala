@@ -26,4 +26,11 @@ object DateYouWantSPToStart extends BasePage {
     submitPage()
     HowLongForPaternityLeave
   }
+
+  def enterStartDateDue: HowLongForPaternityLeave.type = {
+    onPage(dateYouWantSPToStart)
+    enterTomorrowDate()
+    submitPage()
+    HowLongForPaternityLeave
+  }
 }

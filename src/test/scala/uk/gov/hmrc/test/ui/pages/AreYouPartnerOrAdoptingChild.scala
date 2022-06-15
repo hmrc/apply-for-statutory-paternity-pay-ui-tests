@@ -27,4 +27,11 @@ object AreYouPartnerOrAdoptingChild extends BasePage {
     AreYouBiologicalFather
   }
 
+  def selectYes: UseDifferentForm.type = {
+    onPage(areYouPartnerOrAdoptingChild)
+    click("value")
+    submitPage()
+    UseDifferentForm
+  }
+
 }
