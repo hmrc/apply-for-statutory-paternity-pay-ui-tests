@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 HM Revenue & Customs
+ * Copyright 2022 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,18 +16,15 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.By
+object EnduringFamilyRelationship extends BasePage {
 
-object Turnover extends BasePage {
+  val enduringFamilyRelationship = "Do you live with the mother and child in an enduring family relationship?"
 
-  val turnover      = "Enter your turnover - Check your VAT flat rate - GOV.UK"
-  val turnoverInput = "turnover"
-
-  def provideTurnoverAmount(amount: String): CostOfGoods.type = {
-    onPage(turnover)
-    driver.findElement(By.id(turnoverInput)).sendKeys(amount)
+  def selectYes: ResponsibilityForChild.type = {
+    onPage(enduringFamilyRelationship)
+    click("value")
     submitPage()
-    CostOfGoods
+    ResponsibilityForChild
   }
 
 }

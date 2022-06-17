@@ -14,16 +14,21 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.driver
+package uk.gov.hmrc.test.ui.pages
+import uk.gov.hmrc.domain.Generator
 
-import com.typesafe.scalalogging.LazyLogging
-import org.openqa.selenium.WebDriver
-import uk.gov.hmrc.webdriver.SingletonDriver
+object WhatIsYourNino extends BasePage {
 
-trait BrowserDriver extends LazyLogging {
-  logger.info(
-    s"Instantiating Browser: ${sys.props.getOrElse("browser", "'browser' System property not set. This is required")}"
-  )
+  val whatIsYourNino = "What is your National Insurance number?"
 
-  implicit lazy val driver: WebDriver = SingletonDriver.getInstance()
+  private val ninoGenerator = new Generator(random)
+
+  def generateNino: String = ninoGenerator.nextNino.toString()
+
+  def enterNino: HasBabyBeenBornYet.type = {
+    onPage(whatIsYourNino)
+    enter("value", generateNino)
+    submitPage()
+    HasBabyBeenBornYet
+  }
 }

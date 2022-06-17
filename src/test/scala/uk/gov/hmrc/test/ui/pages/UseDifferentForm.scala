@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 HM Revenue & Customs
+ * Copyright 2022 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,22 +16,13 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.By
+object UseDifferentForm extends BasePage {
 
-object CostOfGoods extends BasePage {
+  val useDifferentForm = "You must use a different form to claim Statutory Paternity Pay"
 
-  val costOfGoods      = "Enter your cost of goods - Check your VAT flat rate - GOV.UK"
-  val costOfGoodsInput = "costOfGoods"
-
-  def provideCostOfGoodsAmount(amount: String): this.type = {
-    onPage(costOfGoods)
-    driver.findElement(By.id(costOfGoodsInput)).sendKeys(amount)
-    this
-  }
-
-  def submitVATInformation: CheckYourVATResult.type = {
-    submitPage()
-    CheckYourVATResult
+  def result: String = {
+    onPage(useDifferentForm)
+    findByClassName("govuk-panel__title").getText
   }
 
 }
