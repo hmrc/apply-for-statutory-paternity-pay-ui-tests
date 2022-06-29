@@ -20,7 +20,7 @@ import uk.gov.hmrc.test.ui.conf.TestConfiguration
 
 object ApplyForSPPHomePage extends BasePage {
   val url: String = TestConfiguration.url("apply-for-statutory-paternity-pay-frontend")
-  val sppHomePage = "Ask your employer for Statutory Paternity Pay"
+  val sppHomePage = "Ask your employer for Statutory Paternity Pay or paternity leave or both"
 
   def loadPage: this.type = {
     driver.navigate().to(url)
