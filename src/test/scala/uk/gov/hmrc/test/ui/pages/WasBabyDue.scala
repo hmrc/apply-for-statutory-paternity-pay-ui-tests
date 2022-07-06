@@ -16,14 +16,13 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-object BabyDueDate extends BasePage {
+object WasBabyDue extends BasePage {
 
-  val babyDueDate = "What date is the baby due?"
+  val babyDueDate = "What date was the baby due?"
 
-  def enterBabyDueDate: DoYouWantPayToStartOnDueDate.type = {
+  def enterBabyDueDate: Unit = {
     onPage(babyDueDate)
     enterDate()
     submitPage()
-    DoYouWantPayToStartOnDueDate
   }
 }
