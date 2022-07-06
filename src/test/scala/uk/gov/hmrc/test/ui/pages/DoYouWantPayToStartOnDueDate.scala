@@ -19,7 +19,7 @@ package uk.gov.hmrc.test.ui.pages
 object DoYouWantPayToStartOnDueDate extends BasePage {
 
   val doYouWantPayToStartOnDueDate =
-    "Would you like your Statutory Paternity Pay and/or paternity leave to start on the day the baby is due?"
+    "Would you like your Statutory Paternity Pay and/or Paternity Leave to start on the day the baby is due?"
 
   def selectNo: DateYouWantSPToStart.type = {
     onPage(doYouWantPayToStartOnDueDate)
