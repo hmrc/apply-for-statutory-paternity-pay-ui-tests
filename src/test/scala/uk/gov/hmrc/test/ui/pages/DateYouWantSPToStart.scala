@@ -21,17 +21,17 @@ object DateYouWantSPToStart extends BasePage {
   val dateYouWantSPToStart =
     "What date would you like your Statutory Paternity Pay and/or paternity leave to start?"
 
-  def enterStartDate: HowLongForPaternityLeave.type = {
+  def enterStartDate: WasBabyDue.type = {
     onPage(dateYouWantSPToStart)
     enterDate()
     submitPage()
-    HowLongForPaternityLeave
+    WasBabyDue
   }
 
-  def enterStartDateDue: HowLongForPaternityLeave.type = {
+  def enterStartDateDue: WasBabyDue.type = {
     onPage(dateYouWantSPToStart)
     enterTomorrowDate()
     submitPage()
-    HowLongForPaternityLeave
+    WasBabyDue
   }
 }
