@@ -16,9 +16,10 @@
 
 package uk.gov.hmrc.test.ui.pages
 
+import org.scalatest.matchers.should.Matchers
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
 
-object ApplyForSPPHomePage extends BasePage {
+object ApplyForSPPHomePage extends BasePage with Matchers {
   val url: String = TestConfiguration.url("apply-for-statutory-paternity-pay-frontend")
   val sppHomePage = "Ask your employer for Statutory Paternity Pay or Paternity Leave or both"
 
@@ -34,8 +35,5 @@ object ApplyForSPPHomePage extends BasePage {
   }
 
   def onHomePage: Unit =
-    if (driver.getTitle != "Ask your employer for Statutory Paternity Pay or Paternity Leave or both - GOV.UK")
-      throw PageNotFoundException(
-        s"Expected 'Ask your employer for Statutory Paternity Pay or Paternity Leave or both - GOV.UK' page, but found '${driver.getTitle}' page."
-      )
+    driver.getTitle shouldBe "Ask your employer for Statutory Paternity Pay or Paternity Leave or both - GOV.UK"
 }

@@ -64,15 +64,12 @@ trait BasePage extends BrowserDriver with Matchers {
   def submitPage(): Unit =
     driver.findElement(By.className(continueButton)).click()
 
-  def onPage(pageTitle: String, section: Option[String] = None): Unit =
-    if (
-      driver.getTitle != pageTitle + section
-        .map(" - " + _)
-        .getOrElse("") + " - Ask your employer for Statutory Paternity Pay or Paternity Leave or both - GOV.UK"
-    )
-      throw PageNotFoundException(
-        s"Expected '$pageTitle' page, but found '${driver.getTitle}' page."
-      )
+  def onPage(pageTitle: String, section: Option[String] = None): Unit = {
+    val expectedTitle = pageTitle + section
+      .map(" - " + _)
+      .getOrElse("") + " - Ask your employer for Statutory Paternity Pay or Paternity Leave or both - GOV.UK"
+    driver.getTitle shouldBe expectedTitle
+  }
 }
 
 case class PageNotFoundException(s: String) extends Exception(s)
