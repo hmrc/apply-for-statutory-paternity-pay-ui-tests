@@ -24,7 +24,7 @@ object ApplyForSPPHomePage extends BasePage {
 
   def loadPage: this.type = {
     driver.navigate().to(url)
-    onPage(sppHomePage)
+    onHomePage
     this
   }
 
@@ -32,4 +32,10 @@ object ApplyForSPPHomePage extends BasePage {
     click("start")
     AreYouPartnerOrAdoptingChild
   }
+
+  def onHomePage: Unit =
+    if (driver.getTitle != "Ask your employer for Statutory Paternity Pay or Paternity Leave or both - GOV.UK")
+      throw PageNotFoundException(
+        s"Expected 'Ask your employer for Statutory Paternity Pay or Paternity Leave or both - GOV.UK' page, but found '${driver.getTitle}' page."
+      )
 }
