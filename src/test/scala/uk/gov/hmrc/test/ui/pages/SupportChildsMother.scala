@@ -18,7 +18,7 @@ package uk.gov.hmrc.test.ui.pages
 
 object SupportChildsMother extends BasePage {
 
-  val supportChildsMother = "Will you take time off work to support the child’s mother?"
+  val supportChildsMother = "Will you use your Paternity Leave to support the child’s mother?"
 
   def selectYes: WhatIsYourName.type = {
     onPage(supportChildsMother)
