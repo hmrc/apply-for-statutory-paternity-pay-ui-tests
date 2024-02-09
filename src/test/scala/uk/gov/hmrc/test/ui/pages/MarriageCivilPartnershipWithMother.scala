@@ -18,10 +18,17 @@ package uk.gov.hmrc.test.ui.pages
 
 object MarriageCivilPartnershipWithMother extends BasePage {
 
-  val marriageCivilPartnershipWithMother = "Are you in a marriage or civil partnership with the child’s mother?"
+  val title = "Are you in a marriage or civil partnership with the child’s mother?"
+
+  def selectYes: ResponsibilityForChild.type = {
+    onPage(title)
+    click("value")
+    submitPage()
+    ResponsibilityForChild
+  }
 
   def selectNo: EnduringFamilyRelationship.type = {
-    onPage(marriageCivilPartnershipWithMother)
+    onPage(title)
     click("value-no")
     submitPage()
     EnduringFamilyRelationship

@@ -18,10 +18,10 @@ package uk.gov.hmrc.test.ui.pages
 
 object WhatIsYourName extends BasePage {
 
-  val whatIsYourName = "What is your name?"
+  val title = "What is your name?"
 
   def enterName: WhatIsYourNino.type = {
-    onPage(whatIsYourName)
+    onPage(title)
     enter("firstName", "Zaphod")
     enter("lastName", "Beeblebrox")
     submitPage()

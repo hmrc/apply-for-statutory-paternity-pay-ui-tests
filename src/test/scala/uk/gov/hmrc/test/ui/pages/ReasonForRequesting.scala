@@ -16,22 +16,29 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-object DateYouWantSPToStart extends BasePage {
+object ReasonForRequesting extends BasePage {
 
-  val dateYouWantSPToStart =
-    "What date would you like your Statutory Paternity Pay and/or Paternity Leave to start?"
+  val title = "Why are you asking for Statutory Paternity Pay and/or Paternity Leave from your employer?"
 
-  def enterStartDate: WhenWasBabyDue.type = {
-    onPage(dateYouWantSPToStart)
-    enterDate()
+  def selectAdopting: MarriageCivilPartnershipAdopting.type = {
+    onPage(title)
+    click("value_0")
     submitPage()
-    WhenWasBabyDue
+    MarriageCivilPartnershipAdopting
   }
 
-  def enterStartDateDue: WhenWasBabyDue.type = {
-    onPage(dateYouWantSPToStart)
-    enterTomorrowDate()
+  def selectSupportingAdopting: MarriageCivilPartnershipSupportingAdopting.type = {
+    onPage(title)
+    click("value_1")
     submitPage()
-    WhenWasBabyDue
+    MarriageCivilPartnershipSupportingAdopting
   }
+
+  def selectParentalOrder: MarriageCivilPartnershipParentalOrder.type = {
+    onPage(title)
+    click("value_2")
+    submitPage()
+    MarriageCivilPartnershipParentalOrder
+  }
+
 }

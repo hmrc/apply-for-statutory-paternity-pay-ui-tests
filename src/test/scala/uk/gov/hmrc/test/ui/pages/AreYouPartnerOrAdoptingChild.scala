@@ -18,20 +18,20 @@ package uk.gov.hmrc.test.ui.pages
 
 object AreYouPartnerOrAdoptingChild extends BasePage {
 
-  val areYouPartnerOrAdoptingChild = "Are you or a partner becoming adoptive or parental order parents?"
+  val title = "Are you or your partner adopting a child or becoming parental order parents?"
 
   def selectNo: AreYouBiologicalFather.type = {
-    onPage(areYouPartnerOrAdoptingChild)
+    onPage(title)
     click("value-no")
     submitPage()
     AreYouBiologicalFather
   }
 
-  def selectYes: UseDifferentForm.type = {
-    onPage(areYouPartnerOrAdoptingChild)
+  def selectYes: ApplyingForStatutoryAdoptionPay.type = {
+    onPage(title)
     click("value")
     submitPage()
-    UseDifferentForm
+    ApplyingForStatutoryAdoptionPay
   }
 
 }

@@ -16,22 +16,22 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-object DateYouWantSPToStart extends BasePage {
+object MarriageCivilPartnershipSupportingAdopting extends BasePage {
 
-  val dateYouWantSPToStart =
-    "What date would you like your Statutory Paternity Pay and/or Paternity Leave to start?"
+  val title = "Are you in a marriage or civil partnership with the person adopting or intending to adopt the child on their own?"
 
-  def enterStartDate: WhenWasBabyDue.type = {
-    onPage(dateYouWantSPToStart)
-    enterDate()
+  def selectYes: ResponsibilityForChild.type = {
+    onPage(title)
+    click("value")
     submitPage()
-    WhenWasBabyDue
+    ResponsibilityForChild
   }
 
-  def enterStartDateDue: WhenWasBabyDue.type = {
-    onPage(dateYouWantSPToStart)
-    enterTomorrowDate()
+  def selectNo: EnduringFamilyRelationshipSupportingAdopting.type = {
+    onPage(title)
+    click("value-no")
     submitPage()
-    WhenWasBabyDue
+    EnduringFamilyRelationshipSupportingAdopting
   }
+
 }

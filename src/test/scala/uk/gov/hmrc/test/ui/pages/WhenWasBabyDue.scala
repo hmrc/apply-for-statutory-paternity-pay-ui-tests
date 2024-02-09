@@ -16,7 +16,7 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-object WasBabyDue extends BasePage {
+object WhenWasBabyDue extends BasePage {
 
   val babyDueDate = "What date was the baby due?"
 

@@ -16,14 +16,22 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-object SupportChildsMother extends BasePage {
+object ApplyingForStatutoryAdoptionPay extends BasePage {
 
-  val supportChildsMother = "Will you use your Paternity Leave to support the child’s mother?"
+  val title = "Are you applying for Statutory Adoption Pay and Leave?"
 
-  def selectYes: WhatIsYourName.type = {
-    onPage(supportChildsMother)
+  def selectNo: AdoptingFromAbroad.type = {
+    onPage(title)
+    click("value-no")
+    submitPage()
+    AdoptingFromAbroad
+  }
+
+  def selectYes: Ineligible.type = {
+    onPage(title)
     click("value")
     submitPage()
-    WhatIsYourName
+    Ineligible
   }
+
 }

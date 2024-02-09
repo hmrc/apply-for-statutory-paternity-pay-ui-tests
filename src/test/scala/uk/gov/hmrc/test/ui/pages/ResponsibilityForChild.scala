@@ -20,11 +20,11 @@ object ResponsibilityForChild extends BasePage {
 
   val responsibilityForChild = "Will you have responsibility for caring for the child?"
 
-  def selectYes: TimeOffWork.type = {
+  def selectYes: TimeOffToCareForChild.type = {
     onPage(responsibilityForChild)
     click("value")
     submitPage()
-    TimeOffWork
+    TimeOffToCareForChild
   }
 
   def selectNo: Ineligible.type = {

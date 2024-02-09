@@ -18,10 +18,10 @@ package uk.gov.hmrc.test.ui.pages
 
 object Ineligible extends BasePage {
 
-  val ineligible = "You are not eligible for Statutory Paternity Pay"
+  val title = "You are not eligible for Statutory Paternity Pay and Statutory Paternity Leave"
 
   def result: String = {
-    onPage(ineligible)
+    onPage(title)
     findByClassName("govuk-panel__title").getText
   }
 

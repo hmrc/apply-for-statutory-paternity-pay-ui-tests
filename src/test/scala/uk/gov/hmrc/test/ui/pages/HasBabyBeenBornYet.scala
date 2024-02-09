@@ -20,18 +20,18 @@ object HasBabyBeenBornYet extends BasePage {
 
   val hasBabyBeenBornYet = "Has the baby been born yet?"
 
-  def selectYes: BabyDOB.type = {
+  def selectYes: WhenWasBabyBorn.type = {
     onPage(hasBabyBeenBornYet)
     click("value")
     submitPage()
-    BabyDOB
+    WhenWasBabyBorn
   }
 
-  def selectNo: IsBabyDue.type = {
+  def selectNo: WhenIsBabyDue.type = {
     onPage(hasBabyBeenBornYet)
     click("value-no")
     submitPage()
-    IsBabyDue
+    WhenIsBabyDue
   }
 
 }

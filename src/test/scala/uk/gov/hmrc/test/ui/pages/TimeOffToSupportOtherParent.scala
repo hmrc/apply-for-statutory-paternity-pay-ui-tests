@@ -16,14 +16,14 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-object BabyDOB extends BasePage {
+object TimeOffToSupportOtherParent extends BasePage {
 
-  val babyDOB = "What date was the baby born?"
+  val title = "Will you use your Paternity Leave to support your partner in caring for the child?"
 
-  def enterBabyDOB: DoYouWantPayToStartOnDOB.type = {
-    onPage(babyDOB)
-    enterDOB()
+  def selectYes: WhatIsYourName.type = {
+    onPage(title)
+    click("value")
     submitPage()
-    DoYouWantPayToStartOnDOB
+    WhatIsYourName
   }
 }

@@ -16,13 +16,22 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-object IsBabyDue extends BasePage {
+object MarriageCivilPartnershipAdopting extends BasePage {
 
-  val babyDueDate = "What date is the baby due?"
+  val title = "Are you in a marriage or civil partnership with the other person adopting or intending to adopt the child?"
 
-  def enterBabyDueDate: Unit = {
-    onPage(babyDueDate)
-    enterDate()
+  def selectYes: ResponsibilityForChild.type = {
+    onPage(title)
+    click("value")
     submitPage()
+    ResponsibilityForChild
   }
+
+  def selectNo: EnduringFamilyRelationshipAdopting.type = {
+    onPage(title)
+    click("value-no")
+    submitPage()
+    EnduringFamilyRelationshipAdopting
+  }
+
 }

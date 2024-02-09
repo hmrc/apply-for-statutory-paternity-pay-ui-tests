@@ -16,22 +16,15 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-object DateYouWantSPToStart extends BasePage {
+object EnduringFamilyRelationshipParentalOrder extends BasePage {
 
-  val dateYouWantSPToStart =
-    "What date would you like your Statutory Paternity Pay and/or Paternity Leave to start?"
+  val title = "Do you live with the other parental order parent in an enduring family relationship?"
 
-  def enterStartDate: WhenWasBabyDue.type = {
-    onPage(dateYouWantSPToStart)
-    enterDate()
+  def selectYes: ResponsibilityForChild.type = {
+    onPage(title)
+    click("value")
     submitPage()
-    WhenWasBabyDue
+    ResponsibilityForChild
   }
 
-  def enterStartDateDue: WhenWasBabyDue.type = {
-    onPage(dateYouWantSPToStart)
-    enterTomorrowDate()
-    submitPage()
-    WhenWasBabyDue
-  }
 }
