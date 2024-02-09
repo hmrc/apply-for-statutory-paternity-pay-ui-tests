@@ -14,24 +14,20 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.pages.paternityDetails
 
-object ResponsibilityForChild extends BasePage {
+import uk.gov.hmrc.test.ui.pages.BasePage
 
-  val title = "Will you have responsibility for caring for the child?"
+object DoYouWantPayToStartOnDOB extends BasePage {
 
-  def selectYes: TimeOffToCareForChild.type = {
-    onPage(title)
-    click("value")
-    submitPage()
-    TimeOffToCareForChild
-  }
+  val title =
+    "Would you like your Statutory Paternity Pay and/or Paternity Leave to start on the day the baby was born?"
 
-  def selectNo: NotEligible.type = {
+  def selectNo: DateYouWantSPToStart.type = {
     onPage(title)
     click("value-no")
     submitPage()
-    NotEligible
+    DateYouWantSPToStart
   }
 
 }

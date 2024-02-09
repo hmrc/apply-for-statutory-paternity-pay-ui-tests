@@ -14,24 +14,19 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.pages.paternityDetails
 
-object MarriageCivilPartnershipSupportingAdopting extends BasePage {
+import uk.gov.hmrc.test.ui.pages.{BasePage, CheckYourAnswers}
 
-  val title = "Are you in a marriage or civil partnership with the person adopting or intending to adopt the child on their own?"
+object HowLongForPaternityLeave extends BasePage {
 
-  def selectYes: ResponsibilityForChild.type = {
+  val title = "How long will you be on Paternity Leave for?"
+
+  def select1Week: CheckYourAnswers.type = {
     onPage(title)
-    click("value")
+    click("value_0")
     submitPage()
-    ResponsibilityForChild
-  }
-
-  def selectNo: EnduringFamilyRelationshipSupportingAdopting.type = {
-    onPage(title)
-    click("value-no")
-    submitPage()
-    EnduringFamilyRelationshipSupportingAdopting
+    CheckYourAnswers
   }
 
 }

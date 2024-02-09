@@ -14,24 +14,19 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.pages.relationshipWithChild
 
-object MarriageCivilPartnershipWithMother extends BasePage {
+import uk.gov.hmrc.test.ui.pages.BasePage
+import uk.gov.hmrc.test.ui.pages.personalDetails.YourName
 
-  val title = "Are you in a marriage or civil partnership with the child’s mother?"
+object TimeOffToSupportOtherParent extends BasePage {
 
-  def selectYes: ResponsibilityForChild.type = {
+  val title = "Will you use your Paternity Leave to support your partner in caring for the child?"
+
+  def selectYes: YourName.type = {
     onPage(title)
     click("value")
     submitPage()
-    ResponsibilityForChild
+    YourName
   }
-
-  def selectNo: EnduringFamilyRelationship.type = {
-    onPage(title)
-    click("value-no")
-    submitPage()
-    EnduringFamilyRelationship
-  }
-
 }

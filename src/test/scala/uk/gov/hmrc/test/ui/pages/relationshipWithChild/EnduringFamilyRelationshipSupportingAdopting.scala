@@ -14,17 +14,19 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.pages.relationshipWithChild
 
-object EnduringFamilyRelationshipAdopting extends BasePage {
+import uk.gov.hmrc.test.ui.pages.BasePage
 
-  val title = "Do you live with the other person adopting or intending to adopt the child in an enduring family relationship?"
+object EnduringFamilyRelationshipSupportingAdopting extends BasePage {
 
-  def selectYes: ResponsibilityForChild.type = {
+  val title = "Do you live with the person adopting or intending to adopt the child in an enduring family relationship?"
+
+  def selectYes: CaringResponsibility.type = {
     onPage(title)
     click("value")
     submitPage()
-    ResponsibilityForChild
+    CaringResponsibility
   }
 
 }

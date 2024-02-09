@@ -63,7 +63,7 @@ trait BaseSpec
       )
   }
   override def afterAll(): Unit   =
-    Try(SingletonDriver.closeInstance)
+    Try(SingletonDriver.closeInstance())
 
   override def withFixture(test: NoArgTest): Outcome = {
     val fixture = super.withFixture(test)

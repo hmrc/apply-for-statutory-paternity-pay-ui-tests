@@ -14,24 +14,26 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.pages.applicationDetails
 
-object AdoptingFromAbroad extends BasePage {
+import uk.gov.hmrc.test.ui.pages.{BasePage, NotEligible}
 
-  val title = "Are you or your partner adopting a child from abroad?"
+object ApplyingForStatutoryAdoptionPay extends BasePage {
 
-  def selectNo: ReasonForRequesting.type = {
+  val title = "Are you applying for Statutory Adoption Pay and Leave?"
+
+  def selectNo: AdoptingFromAbroad.type = {
     onPage(title)
     click("value-no")
     submitPage()
-    ReasonForRequesting
+    AdoptingFromAbroad
   }
 
-  def selectYes: ReasonForRequesting.type = {
+  def selectYes: NotEligible.type = {
     onPage(title)
     click("value")
     submitPage()
-    ReasonForRequesting
+    NotEligible
   }
 
 }

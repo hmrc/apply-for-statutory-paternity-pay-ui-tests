@@ -18,6 +18,7 @@ package uk.gov.hmrc.test.ui.pages
 
 import org.scalatest.matchers.should.Matchers
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
+import uk.gov.hmrc.test.ui.pages.applicationDetails.WhereDoYouLive
 
 object StartPage extends BasePage with Matchers {
   val url: String   = TestConfiguration.url("apply-for-statutory-paternity-pay-frontend")
@@ -25,7 +26,7 @@ object StartPage extends BasePage with Matchers {
 
   def loadPage: this.type = {
     driver.navigate().to(url)
-    onHomePage
+    onHomePage()
     this
   }
 
@@ -34,5 +35,5 @@ object StartPage extends BasePage with Matchers {
     WhereDoYouLive
   }
 
-  def onHomePage: Unit = driver.getTitle shouldBe title
+  def onHomePage(): Unit = driver.getTitle shouldBe title
 }

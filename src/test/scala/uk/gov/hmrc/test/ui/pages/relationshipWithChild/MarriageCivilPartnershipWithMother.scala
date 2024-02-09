@@ -14,24 +14,26 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.pages.relationshipWithChild
 
-object ApplyingForStatutoryAdoptionPay extends BasePage {
+import uk.gov.hmrc.test.ui.pages.BasePage
 
-  val title = "Are you applying for Statutory Adoption Pay and Leave?"
+object MarriageCivilPartnershipWithMother extends BasePage {
 
-  def selectNo: AdoptingFromAbroad.type = {
-    onPage(title)
-    click("value-no")
-    submitPage()
-    AdoptingFromAbroad
-  }
+  val title = "Are you in a marriage or civil partnership with the child’s mother?"
 
-  def selectYes: NotEligible.type = {
+  def selectYes: CaringResponsibility.type = {
     onPage(title)
     click("value")
     submitPage()
-    NotEligible
+    CaringResponsibility
+  }
+
+  def selectNo: EnduringFamilyRelationship.type = {
+    onPage(title)
+    click("value-no")
+    submitPage()
+    EnduringFamilyRelationship
   }
 
 }

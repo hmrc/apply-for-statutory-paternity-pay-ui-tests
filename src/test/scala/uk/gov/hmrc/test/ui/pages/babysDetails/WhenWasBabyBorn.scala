@@ -14,24 +14,19 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.pages.babysDetails
 
-object MarriageCivilPartnershipAdopting extends BasePage {
+import uk.gov.hmrc.test.ui.pages.BasePage
+import uk.gov.hmrc.test.ui.pages.paternityDetails.DoYouWantPayToStartOnDOB
 
-  val title = "Are you in a marriage or civil partnership with the other person adopting or intending to adopt the child?"
+object WhenWasBabyBorn extends BasePage {
 
-  def selectYes: ResponsibilityForChild.type = {
+  val title = "What date was the baby born?"
+
+  def enterBabyDOB: DoYouWantPayToStartOnDOB.type = {
     onPage(title)
-    click("value")
+    enterDOB()
     submitPage()
-    ResponsibilityForChild
+    DoYouWantPayToStartOnDOB
   }
-
-  def selectNo: EnduringFamilyRelationshipAdopting.type = {
-    onPage(title)
-    click("value-no")
-    submitPage()
-    EnduringFamilyRelationshipAdopting
-  }
-
 }

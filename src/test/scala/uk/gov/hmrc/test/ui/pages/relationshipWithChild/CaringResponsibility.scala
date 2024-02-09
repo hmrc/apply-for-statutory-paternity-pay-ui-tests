@@ -14,24 +14,26 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.pages.relationshipWithChild
 
-object AreYouBiologicalFather extends BasePage {
+import uk.gov.hmrc.test.ui.pages.{BasePage, NotEligible}
 
-  val title = "Are you the child’s biological father?"
+object CaringResponsibility extends BasePage {
 
-  def selectYes: ResponsibilityForChild.type = {
+  val title = "Will you have responsibility for caring for the child?"
+
+  def selectYes: TimeOffToCareForChild.type = {
     onPage(title)
     click("value")
     submitPage()
-    ResponsibilityForChild
+    TimeOffToCareForChild
   }
 
-  def selectNo: MarriageCivilPartnershipWithMother.type = {
+  def selectNo: NotEligible.type = {
     onPage(title)
     click("value-no")
     submitPage()
-    MarriageCivilPartnershipWithMother
+    NotEligible
   }
 
 }

@@ -14,24 +14,26 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.pages.babysDetails
 
-object WhereDoYouLive extends BasePage {
+import uk.gov.hmrc.test.ui.pages.BasePage
 
-  val title = "Where do you live?"
+object HasBabyBeenBornYet extends BasePage {
 
-  def selectEngland: AdoptingOrParentalOrder.type = {
+  val title = "Has the baby been born yet?"
+
+  def selectYes: WhenWasBabyBorn.type = {
     onPage(title)
-    click("value_0")
+    click("value")
     submitPage()
-    AdoptingOrParentalOrder
+    WhenWasBabyBorn
   }
 
-  def selectNorthernIreland: AdoptingOrParentalOrder.type = {
+  def selectNo: WhenIsBabyDue.type = {
     onPage(title)
-    click("value_3")
+    click("value-no")
     submitPage()
-    AdoptingOrParentalOrder
+    WhenIsBabyDue
   }
 
 }

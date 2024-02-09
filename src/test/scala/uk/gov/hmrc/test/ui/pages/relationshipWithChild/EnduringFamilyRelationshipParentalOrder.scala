@@ -14,17 +14,19 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.pages.relationshipWithChild
 
-object HowLongForPaternityLeave extends BasePage {
+import uk.gov.hmrc.test.ui.pages.BasePage
 
-  val title = "How long will you be on Paternity Leave for?"
+object EnduringFamilyRelationshipParentalOrder extends BasePage {
 
-  def select1Week: CheckYourAnswers.type = {
+  val title = "Do you live with the other parental order parent in an enduring family relationship?"
+
+  def selectYes: CaringResponsibility.type = {
     onPage(title)
-    click("value_0")
+    click("value")
     submitPage()
-    CheckYourAnswers
+    CaringResponsibility
   }
 
 }

@@ -14,21 +14,19 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
-import uk.gov.hmrc.domain.Generator
+package uk.gov.hmrc.test.ui.pages.relationshipWithChild
 
-object WhatIsYourNino extends BasePage {
+import uk.gov.hmrc.test.ui.pages.BasePage
 
-  val title = "What is your National Insurance number?"
+object EnduringFamilyRelationship extends BasePage {
 
-  private val ninoGenerator = new Generator(random)
+  val title = "Do you live with the mother and child in an enduring family relationship?"
 
-  def generateNino: String = ninoGenerator.nextNino.toString()
-
-  def enterNino: HasBabyBeenBornYet.type = {
+  def selectYes: CaringResponsibility.type = {
     onPage(title)
-    enter("value", generateNino)
+    click("value")
     submitPage()
-    HasBabyBeenBornYet
+    CaringResponsibility
   }
+
 }

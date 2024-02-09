@@ -17,6 +17,11 @@
 package uk.gov.hmrc.test.ui.specs
 
 import uk.gov.hmrc.test.ui.pages._
+import uk.gov.hmrc.test.ui.pages.applicationDetails._
+import uk.gov.hmrc.test.ui.pages.babysDetails._
+import uk.gov.hmrc.test.ui.pages.paternityDetails._
+import uk.gov.hmrc.test.ui.pages.personalDetails._
+import uk.gov.hmrc.test.ui.pages.relationshipWithChild._
 import uk.gov.hmrc.test.ui.specs.tags.ZapTests
 
 class JourneySpec extends BaseSpec {
@@ -35,11 +40,11 @@ class JourneySpec extends BaseSpec {
       When("I provide details")
       WhereDoYouLive.selectEngland
       AdoptingOrParentalOrder.selectNo
-      AreYouBiologicalFather.selectYes
-      ResponsibilityForChild.selectYes
+      BiologicalFather.selectYes
+      CaringResponsibility.selectYes
       TimeOffToCareForChild.selectYes
-      WhatIsYourName.enterName
-      WhatIsYourNino.enterNino
+      YourName.enterName
+      YourNino.enterNino
       HasBabyBeenBornYet.selectYes
       WhenWasBabyBorn.enterBabyDOB
       DoYouWantPayToStartOnDOB.selectNo
@@ -65,16 +70,16 @@ class JourneySpec extends BaseSpec {
       When("I provide details")
       WhereDoYouLive.selectEngland
       AdoptingOrParentalOrder.selectNo
-      AreYouBiologicalFather.selectNo
+      BiologicalFather.selectNo
       MarriageCivilPartnershipWithMother.selectNo
       EnduringFamilyRelationship.selectYes
-      ResponsibilityForChild.selectYes
+      CaringResponsibility.selectYes
       TimeOffToCareForChild.selectNo
       TimeOffToSupportOtherParent.selectYes
-      WhatIsYourName.enterName
-      WhatIsYourNino.enterNino
+      YourName.enterName
+      YourNino.enterNino
       HasBabyBeenBornYet.selectNo
-      WhenIsBabyDue.enterBabyDueDate
+      WhenIsBabyDue.enterBabyDueDate()
       DoYouWantPayToStartOnDueDate.selectNo
       DateYouWantSPToStart.enterStartDateDue
       HowLongForPaternityLeave.select1Week
@@ -101,11 +106,11 @@ class JourneySpec extends BaseSpec {
       ReasonForRequesting.selectAdopting
       MarriageCivilPartnershipAdopting.selectNo
       EnduringFamilyRelationshipAdopting.selectYes
-      ResponsibilityForChild.selectYes
+      CaringResponsibility.selectYes
       TimeOffToCareForChild.selectYes
 
       Then("I will reach the 'What is your name' page")
-      WhatIsYourName.onPage(WhatIsYourName.title)
+      YourName.onPage(YourName.title)
     }
 
     Scenario(
@@ -125,11 +130,11 @@ class JourneySpec extends BaseSpec {
       ReasonForRequesting.selectSupportingAdopting
       MarriageCivilPartnershipSupportingAdopting.selectNo
       EnduringFamilyRelationshipSupportingAdopting.selectYes
-      ResponsibilityForChild.selectYes
+      CaringResponsibility.selectYes
       TimeOffToCareForChild.selectYes
 
       Then("I will reach the 'What is your name' page")
-      WhatIsYourName.onPage(WhatIsYourName.title)
+      YourName.onPage(YourName.title)
     }
 
     Scenario(
@@ -149,11 +154,11 @@ class JourneySpec extends BaseSpec {
       ReasonForRequesting.selectParentalOrder
       MarriageCivilPartnershipParentalOrder.selectNo
       EnduringFamilyRelationshipParentalOrder.selectYes
-      ResponsibilityForChild.selectYes
+      CaringResponsibility.selectYes
       TimeOffToCareForChild.selectYes
 
       Then("I will reach the 'What is your name' page")
-      WhatIsYourName.onPage(WhatIsYourName.title)
+      YourName.onPage(YourName.title)
     }
 
   }
@@ -168,8 +173,8 @@ class JourneySpec extends BaseSpec {
       When("I answer that I will not have responsibility for caring for the child")
       WhereDoYouLive.selectEngland
       AdoptingOrParentalOrder.selectNo
-      AreYouBiologicalFather.selectYes
-      ResponsibilityForChild.selectNo
+      BiologicalFather.selectYes
+      CaringResponsibility.selectNo
 
       Then("I will be told I am not eligible for Statutory Paternity Pay ")
       NotEligible.result should be("You are not eligible for Statutory Paternity Pay and Statutory Paternity Leave")

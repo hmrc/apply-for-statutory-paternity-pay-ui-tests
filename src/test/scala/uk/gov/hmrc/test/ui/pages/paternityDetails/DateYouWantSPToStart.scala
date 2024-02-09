@@ -14,17 +14,27 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.pages.paternityDetails
 
-object EnduringFamilyRelationship extends BasePage {
+import uk.gov.hmrc.test.ui.pages.BasePage
+import uk.gov.hmrc.test.ui.pages.babysDetails.WhenWasBabyDue
 
-  val title = "Do you live with the mother and child in an enduring family relationship?"
+object DateYouWantSPToStart extends BasePage {
 
-  def selectYes: ResponsibilityForChild.type = {
+  val title =
+    "What date would you like your Statutory Paternity Pay and/or Paternity Leave to start?"
+
+  def enterStartDate: WhenWasBabyDue.type = {
     onPage(title)
-    click("value")
+    enterDate()
     submitPage()
-    ResponsibilityForChild
+    WhenWasBabyDue
   }
 
+  def enterStartDateDue: WhenWasBabyDue.type = {
+    onPage(title)
+    enterTomorrowDate()
+    submitPage()
+    WhenWasBabyDue
+  }
 }

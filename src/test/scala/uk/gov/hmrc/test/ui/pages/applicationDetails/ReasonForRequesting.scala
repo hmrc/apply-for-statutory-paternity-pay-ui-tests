@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.pages.applicationDetails
+
+import uk.gov.hmrc.test.ui.pages.relationshipWithChild.{MarriageCivilPartnershipAdopting, MarriageCivilPartnershipParentalOrder, MarriageCivilPartnershipSupportingAdopting}
+import uk.gov.hmrc.test.ui.pages.BasePage
 
 object ReasonForRequesting extends BasePage {
 

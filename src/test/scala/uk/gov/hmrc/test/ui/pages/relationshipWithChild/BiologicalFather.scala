@@ -14,24 +14,26 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.pages.relationshipWithChild
 
-object TimeOffToCareForChild extends BasePage {
+import uk.gov.hmrc.test.ui.pages.BasePage
 
-  val title = "Will you use your Paternity Leave to care for the child?"
+object BiologicalFather extends BasePage {
 
-  def selectYes: WhatIsYourName.type = {
+  val title = "Are you the child’s biological father?"
+
+  def selectYes: CaringResponsibility.type = {
     onPage(title)
     click("value")
     submitPage()
-    WhatIsYourName
+    CaringResponsibility
   }
 
-  def selectNo: TimeOffToSupportOtherParent.type = {
+  def selectNo: MarriageCivilPartnershipWithMother.type = {
     onPage(title)
     click("value-no")
     submitPage()
-    TimeOffToSupportOtherParent
+    MarriageCivilPartnershipWithMother
   }
 
 }

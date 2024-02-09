@@ -14,17 +14,27 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.pages.applicationDetails
 
-object WhatIsYourName extends BasePage {
+import uk.gov.hmrc.test.ui.pages.BasePage
+import uk.gov.hmrc.test.ui.pages.relationshipWithChild.BiologicalFather
 
-  val title = "What is your name?"
+object AdoptingOrParentalOrder extends BasePage {
 
-  def enterName: WhatIsYourNino.type = {
+  val title = "Are you or your partner adopting a child or becoming parental order parents?"
+
+  def selectNo: BiologicalFather.type = {
     onPage(title)
-    enter("firstName", "Zaphod")
-    enter("lastName", "Beeblebrox")
+    click("value-no")
     submitPage()
-    WhatIsYourNino
+    BiologicalFather
   }
+
+  def selectYes: ApplyingForStatutoryAdoptionPay.type = {
+    onPage(title)
+    click("value")
+    submitPage()
+    ApplyingForStatutoryAdoptionPay
+  }
+
 }

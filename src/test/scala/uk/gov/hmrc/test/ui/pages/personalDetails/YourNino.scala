@@ -14,17 +14,24 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.pages.personalDetails
 
-object EnduringFamilyRelationshipSupportingAdopting extends BasePage {
+import uk.gov.hmrc.domain.Generator
+import uk.gov.hmrc.test.ui.pages.BasePage
+import uk.gov.hmrc.test.ui.pages.babysDetails.HasBabyBeenBornYet
 
-  val title = "Do you live with the person adopting or intending to adopt the child in an enduring family relationship?"
+object YourNino extends BasePage {
 
-  def selectYes: ResponsibilityForChild.type = {
+  val title = "What is your National Insurance number?"
+
+  private val ninoGenerator = new Generator(random)
+
+  def generateNino: String = ninoGenerator.nextNino.toString()
+
+  def enterNino: HasBabyBeenBornYet.type = {
     onPage(title)
-    click("value")
+    enter("value", generateNino)
     submitPage()
-    ResponsibilityForChild
+    HasBabyBeenBornYet
   }
-
 }

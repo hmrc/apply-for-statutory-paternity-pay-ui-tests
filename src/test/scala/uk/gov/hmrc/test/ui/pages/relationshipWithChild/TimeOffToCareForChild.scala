@@ -14,17 +14,27 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.pages.relationshipWithChild
 
-object EnduringFamilyRelationshipParentalOrder extends BasePage {
+import uk.gov.hmrc.test.ui.pages.BasePage
+import uk.gov.hmrc.test.ui.pages.personalDetails.YourName
 
-  val title = "Do you live with the other parental order parent in an enduring family relationship?"
+object TimeOffToCareForChild extends BasePage {
 
-  def selectYes: ResponsibilityForChild.type = {
+  val title = "Will you use your Paternity Leave to care for the child?"
+
+  def selectYes: YourName.type = {
     onPage(title)
     click("value")
     submitPage()
-    ResponsibilityForChild
+    YourName
+  }
+
+  def selectNo: TimeOffToSupportOtherParent.type = {
+    onPage(title)
+    click("value-no")
+    submitPage()
+    TimeOffToSupportOtherParent
   }
 
 }

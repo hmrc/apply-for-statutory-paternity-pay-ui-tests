@@ -14,18 +14,26 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.pages.relationshipWithChild
 
-object DoYouWantPayToStartOnDOB extends BasePage {
+import uk.gov.hmrc.test.ui.pages.BasePage
 
-  val title =
-    "Would you like your Statutory Paternity Pay and/or Paternity Leave to start on the day the baby was born?"
+object MarriageCivilPartnershipAdopting extends BasePage {
 
-  def selectNo: DateYouWantSPToStart.type = {
+  val title = "Are you in a marriage or civil partnership with the other person adopting or intending to adopt the child?"
+
+  def selectYes: CaringResponsibility.type = {
+    onPage(title)
+    click("value")
+    submitPage()
+    CaringResponsibility
+  }
+
+  def selectNo: EnduringFamilyRelationshipAdopting.type = {
     onPage(title)
     click("value-no")
     submitPage()
-    DateYouWantSPToStart
+    EnduringFamilyRelationshipAdopting
   }
 
 }

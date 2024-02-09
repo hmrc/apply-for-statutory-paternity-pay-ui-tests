@@ -14,24 +14,17 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.pages.babysDetails
 
-object MarriageCivilPartnershipParentalOrder extends BasePage {
+import uk.gov.hmrc.test.ui.pages.BasePage
 
-  val title = "Are you in a marriage or civil partnership with the other parental order parent?"
+object WhenIsBabyDue extends BasePage {
 
-  def selectYes: ResponsibilityForChild.type = {
+  val title = "What date is the baby due?"
+
+  def enterBabyDueDate(): Unit = {
     onPage(title)
-    click("value")
+    enterDate()
     submitPage()
-    ResponsibilityForChild
   }
-
-  def selectNo: EnduringFamilyRelationshipParentalOrder.type = {
-    onPage(title)
-    click("value-no")
-    submitPage()
-    EnduringFamilyRelationshipParentalOrder
-  }
-
 }

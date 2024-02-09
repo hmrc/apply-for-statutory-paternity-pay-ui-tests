@@ -14,18 +14,26 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.pages.applicationDetails
 
-object DoYouWantPayToStartOnDueDate extends BasePage {
+import uk.gov.hmrc.test.ui.pages.BasePage
 
-  val title =
-    "Would you like your Statutory Paternity Pay and/or Paternity Leave to start on the day the baby is due?"
+object WhereDoYouLive extends BasePage {
 
-  def selectNo: DateYouWantSPToStart.type = {
+  val title = "Where do you live?"
+
+  def selectEngland: AdoptingOrParentalOrder.type = {
     onPage(title)
-    click("value-no")
+    click("value_0")
     submitPage()
-    DateYouWantSPToStart
+    AdoptingOrParentalOrder
+  }
+
+  def selectNorthernIreland: AdoptingOrParentalOrder.type = {
+    onPage(title)
+    click("value_3")
+    submitPage()
+    AdoptingOrParentalOrder
   }
 
 }

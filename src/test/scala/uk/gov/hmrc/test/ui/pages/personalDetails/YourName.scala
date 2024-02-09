@@ -14,16 +14,19 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.pages.personalDetails
 
-object WhenWasBabyDue extends BasePage {
+import uk.gov.hmrc.test.ui.pages.BasePage
 
-  val title = "What date was the baby due?"
+object YourName extends BasePage {
 
-  def enterBabyDueDate: HowLongForPaternityLeave.type = {
+  val title = "What is your name?"
+
+  def enterName: YourNino.type = {
     onPage(title)
-    enterDate()
+    enter("firstName", "Zaphod")
+    enter("lastName", "Beeblebrox")
     submitPage()
-    HowLongForPaternityLeave
+    YourNino
   }
 }

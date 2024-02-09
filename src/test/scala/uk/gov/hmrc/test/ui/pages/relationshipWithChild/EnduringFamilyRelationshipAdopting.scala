@@ -14,24 +14,19 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.pages.relationshipWithChild
 
-object DateYouWantSPToStart extends BasePage {
+import uk.gov.hmrc.test.ui.pages.BasePage
 
-  val title =
-    "What date would you like your Statutory Paternity Pay and/or Paternity Leave to start?"
+object EnduringFamilyRelationshipAdopting extends BasePage {
 
-  def enterStartDate: WhenWasBabyDue.type = {
+  val title = "Do you live with the other person adopting or intending to adopt the child in an enduring family relationship?"
+
+  def selectYes: CaringResponsibility.type = {
     onPage(title)
-    enterDate()
+    click("value")
     submitPage()
-    WhenWasBabyDue
+    CaringResponsibility
   }
 
-  def enterStartDateDue: WhenWasBabyDue.type = {
-    onPage(title)
-    enterTomorrowDate()
-    submitPage()
-    WhenWasBabyDue
-  }
 }
