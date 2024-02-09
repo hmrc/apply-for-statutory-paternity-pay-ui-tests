@@ -18,10 +18,10 @@ package uk.gov.hmrc.test.ui.pages
 
 object HowLongForPaternityLeave extends BasePage {
 
-  val howLongForPaternityLeave = "How long will you be on Paternity Leave for?"
+  val title = "How long will you be on Paternity Leave for?"
 
   def select1Week: CheckYourAnswers.type = {
-    onPage(howLongForPaternityLeave)
+    onPage(title)
     click("value_0")
     submitPage()
     CheckYourAnswers

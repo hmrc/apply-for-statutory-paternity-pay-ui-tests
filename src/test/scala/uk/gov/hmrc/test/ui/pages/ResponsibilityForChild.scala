@@ -18,20 +18,20 @@ package uk.gov.hmrc.test.ui.pages
 
 object ResponsibilityForChild extends BasePage {
 
-  val responsibilityForChild = "Will you have responsibility for caring for the child?"
+  val title = "Will you have responsibility for caring for the child?"
 
   def selectYes: TimeOffToCareForChild.type = {
-    onPage(responsibilityForChild)
+    onPage(title)
     click("value")
     submitPage()
     TimeOffToCareForChild
   }
 
-  def selectNo: Ineligible.type = {
-    onPage(responsibilityForChild)
+  def selectNo: NotEligible.type = {
+    onPage(title)
     click("value-no")
     submitPage()
-    Ineligible
+    NotEligible
   }
 
 }

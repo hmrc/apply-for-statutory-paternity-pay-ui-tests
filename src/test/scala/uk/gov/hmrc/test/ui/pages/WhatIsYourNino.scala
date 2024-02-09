@@ -19,14 +19,14 @@ import uk.gov.hmrc.domain.Generator
 
 object WhatIsYourNino extends BasePage {
 
-  val whatIsYourNino = "What is your National Insurance number?"
+  val title = "What is your National Insurance number?"
 
   private val ninoGenerator = new Generator(random)
 
   def generateNino: String = ninoGenerator.nextNino.toString()
 
   def enterNino: HasBabyBeenBornYet.type = {
-    onPage(whatIsYourNino)
+    onPage(title)
     enter("value", generateNino)
     submitPage()
     HasBabyBeenBornYet

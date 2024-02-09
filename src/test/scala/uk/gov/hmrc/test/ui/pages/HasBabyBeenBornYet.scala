@@ -18,17 +18,17 @@ package uk.gov.hmrc.test.ui.pages
 
 object HasBabyBeenBornYet extends BasePage {
 
-  val hasBabyBeenBornYet = "Has the baby been born yet?"
+  val title = "Has the baby been born yet?"
 
   def selectYes: WhenWasBabyBorn.type = {
-    onPage(hasBabyBeenBornYet)
+    onPage(title)
     click("value")
     submitPage()
     WhenWasBabyBorn
   }
 
   def selectNo: WhenIsBabyDue.type = {
-    onPage(hasBabyBeenBornYet)
+    onPage(title)
     click("value-no")
     submitPage()
     WhenIsBabyDue

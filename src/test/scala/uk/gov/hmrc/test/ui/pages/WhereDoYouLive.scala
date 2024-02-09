@@ -20,18 +20,18 @@ object WhereDoYouLive extends BasePage {
 
   val title = "Where do you live?"
 
-  def selectEngland: AreYouPartnerOrAdoptingChild.type = {
+  def selectEngland: AdoptingOrParentalOrder.type = {
     onPage(title)
     click("value_0")
     submitPage()
-    AreYouPartnerOrAdoptingChild
+    AdoptingOrParentalOrder
   }
 
-  def selectNorthernIreland: AreYouPartnerOrAdoptingChild.type = {
+  def selectNorthernIreland: AdoptingOrParentalOrder.type = {
     onPage(title)
     click("value_3")
     submitPage()
-    AreYouPartnerOrAdoptingChild
+    AdoptingOrParentalOrder
   }
 
 }

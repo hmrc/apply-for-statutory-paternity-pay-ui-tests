@@ -18,10 +18,10 @@ package uk.gov.hmrc.test.ui.pages
 
 object Confirmation extends BasePage {
 
-  val confirmation = "Your application form is ready to send to your employer"
+  val title = "Your application form is ready to send to your employer"
 
   def result: String = {
-    onPage(confirmation)
+    onPage(title)
     findByClassName("govuk-panel__title").getText
   }
 

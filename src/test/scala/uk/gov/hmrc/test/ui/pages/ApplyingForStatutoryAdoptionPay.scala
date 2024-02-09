@@ -27,11 +27,11 @@ object ApplyingForStatutoryAdoptionPay extends BasePage {
     AdoptingFromAbroad
   }
 
-  def selectYes: Ineligible.type = {
+  def selectYes: NotEligible.type = {
     onPage(title)
     click("value")
     submitPage()
-    Ineligible
+    NotEligible
   }
 
 }

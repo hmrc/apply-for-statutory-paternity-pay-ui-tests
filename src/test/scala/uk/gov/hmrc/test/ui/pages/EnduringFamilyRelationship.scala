@@ -18,10 +18,10 @@ package uk.gov.hmrc.test.ui.pages
 
 object EnduringFamilyRelationship extends BasePage {
 
-  val enduringFamilyRelationship = "Do you live with the mother and child in an enduring family relationship?"
+  val title = "Do you live with the mother and child in an enduring family relationship?"
 
   def selectYes: ResponsibilityForChild.type = {
-    onPage(enduringFamilyRelationship)
+    onPage(title)
     click("value")
     submitPage()
     ResponsibilityForChild

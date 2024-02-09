@@ -16,22 +16,23 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-object AreYouPartnerOrAdoptingChild extends BasePage {
+import org.scalatest.matchers.should.Matchers
+import uk.gov.hmrc.test.ui.conf.TestConfiguration
 
-  val title = "Are you or your partner adopting a child or becoming parental order parents?"
+object StartPage extends BasePage with Matchers {
+  val url: String   = TestConfiguration.url("apply-for-statutory-paternity-pay-frontend")
+  val title: String = "Ask your employer for Statutory Paternity Pay or Paternity Leave or both - GOV.UK"
 
-  def selectNo: AreYouBiologicalFather.type = {
-    onPage(title)
-    click("value-no")
-    submitPage()
-    AreYouBiologicalFather
+  def loadPage: this.type = {
+    driver.navigate().to(url)
+    onHomePage
+    this
   }
 
-  def selectYes: ApplyingForStatutoryAdoptionPay.type = {
-    onPage(title)
-    click("value")
-    submitPage()
-    ApplyingForStatutoryAdoptionPay
+  def startApplication: WhereDoYouLive.type = {
+    click("start")
+    WhereDoYouLive
   }
 
+  def onHomePage: Unit = driver.getTitle shouldBe title
 }

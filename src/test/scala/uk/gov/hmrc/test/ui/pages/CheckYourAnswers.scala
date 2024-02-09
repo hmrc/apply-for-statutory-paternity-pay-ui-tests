@@ -18,10 +18,10 @@ package uk.gov.hmrc.test.ui.pages
 
 object CheckYourAnswers extends BasePage {
 
-  val checkYourAnswers = "Check Your Answers"
+  val title = "Check Your Answers"
 
   def confirmAnswers: Confirmation.type = {
-    onPage(checkYourAnswers)
+    onPage(title)
     click("continue")
     Confirmation
   }

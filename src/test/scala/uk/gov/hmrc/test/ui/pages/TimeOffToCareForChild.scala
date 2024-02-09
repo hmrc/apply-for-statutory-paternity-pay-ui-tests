@@ -18,17 +18,17 @@ package uk.gov.hmrc.test.ui.pages
 
 object TimeOffToCareForChild extends BasePage {
 
-  val timeOffWork = "Will you use your Paternity Leave to care for the child?"
+  val title = "Will you use your Paternity Leave to care for the child?"
 
   def selectYes: WhatIsYourName.type = {
-    onPage(timeOffWork)
+    onPage(title)
     click("value")
     submitPage()
     WhatIsYourName
   }
 
   def selectNo: TimeOffToSupportOtherParent.type = {
-    onPage(timeOffWork)
+    onPage(title)
     click("value-no")
     submitPage()
     TimeOffToSupportOtherParent

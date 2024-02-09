@@ -16,7 +16,7 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-object Ineligible extends BasePage {
+object NotEligible extends BasePage {
 
   val title = "You are not eligible for Statutory Paternity Pay and Statutory Paternity Leave"
 

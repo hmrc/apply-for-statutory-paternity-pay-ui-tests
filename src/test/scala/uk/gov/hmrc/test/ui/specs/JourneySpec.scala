@@ -30,11 +30,11 @@ class JourneySpec extends BaseSpec {
       ZapTests
     ) {
       Given("I am on the Apply for SSP Home Page")
-      ApplyForSPPHomePage.loadPage.startApplication
+      StartPage.loadPage.startApplication
 
       When("I provide details")
       WhereDoYouLive.selectEngland
-      AreYouPartnerOrAdoptingChild.selectNo
+      AdoptingOrParentalOrder.selectNo
       AreYouBiologicalFather.selectYes
       ResponsibilityForChild.selectYes
       TimeOffToCareForChild.selectYes
@@ -60,11 +60,11 @@ class JourneySpec extends BaseSpec {
       ZapTests
     ) {
       Given("I am on the Apply for SSP Home Page")
-      ApplyForSPPHomePage.loadPage.startApplication
+      StartPage.loadPage.startApplication
 
       When("I provide details")
       WhereDoYouLive.selectEngland
-      AreYouPartnerOrAdoptingChild.selectNo
+      AdoptingOrParentalOrder.selectNo
       AreYouBiologicalFather.selectNo
       MarriageCivilPartnershipWithMother.selectNo
       EnduringFamilyRelationship.selectYes
@@ -91,11 +91,11 @@ class JourneySpec extends BaseSpec {
       ZapTests
     ) {
       Given("I am on the Apply for SSP Home Page")
-      ApplyForSPPHomePage.loadPage.startApplication
+      StartPage.loadPage.startApplication
 
       When("I provide details")
       WhereDoYouLive.selectEngland
-      AreYouPartnerOrAdoptingChild.selectYes
+      AdoptingOrParentalOrder.selectYes
       ApplyingForStatutoryAdoptionPay.selectNo
       AdoptingFromAbroad.selectNo
       ReasonForRequesting.selectAdopting
@@ -115,11 +115,11 @@ class JourneySpec extends BaseSpec {
       ZapTests
     ) {
       Given("I am on the Apply for SSP Home Page")
-      ApplyForSPPHomePage.loadPage.startApplication
+      StartPage.loadPage.startApplication
 
       When("I provide details")
       WhereDoYouLive.selectEngland
-      AreYouPartnerOrAdoptingChild.selectYes
+      AdoptingOrParentalOrder.selectYes
       ApplyingForStatutoryAdoptionPay.selectNo
       AdoptingFromAbroad.selectNo
       ReasonForRequesting.selectSupportingAdopting
@@ -139,11 +139,11 @@ class JourneySpec extends BaseSpec {
       ZapTests
     ) {
       Given("I am on the Apply for SSP Home Page")
-      ApplyForSPPHomePage.loadPage.startApplication
+      StartPage.loadPage.startApplication
 
       When("I provide details")
       WhereDoYouLive.selectEngland
-      AreYouPartnerOrAdoptingChild.selectYes
+      AdoptingOrParentalOrder.selectYes
       ApplyingForStatutoryAdoptionPay.selectNo
       AdoptingFromAbroad.selectNo
       ReasonForRequesting.selectParentalOrder
@@ -163,16 +163,16 @@ class JourneySpec extends BaseSpec {
     Scenario("Applicant is not eligible for Statutory Paternity Pay", ZapTests) {
 
       Given("I am on the Apply for SSP Home Page")
-      ApplyForSPPHomePage.loadPage.startApplication
+      StartPage.loadPage.startApplication
 
       When("I answer that I will not have responsibility for caring for the child")
       WhereDoYouLive.selectEngland
-      AreYouPartnerOrAdoptingChild.selectNo
+      AdoptingOrParentalOrder.selectNo
       AreYouBiologicalFather.selectYes
       ResponsibilityForChild.selectNo
 
       Then("I will be told I am not eligible for Statutory Paternity Pay ")
-      Ineligible.result should be("You are not eligible for Statutory Paternity Pay and Statutory Paternity Leave")
+      NotEligible.result should be("You are not eligible for Statutory Paternity Pay and Statutory Paternity Leave")
     }
   }
 

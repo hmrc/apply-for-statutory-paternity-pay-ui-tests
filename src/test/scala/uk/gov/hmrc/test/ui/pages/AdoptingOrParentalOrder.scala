@@ -16,13 +16,22 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-object UseDifferentForm extends BasePage {
+object AdoptingOrParentalOrder extends BasePage {
 
-  val useDifferentForm = "You must use a different form to claim Statutory Paternity Pay"
+  val title = "Are you or your partner adopting a child or becoming parental order parents?"
 
-  def result: String = {
-    onPage(useDifferentForm)
-    findByClassName("govuk-panel__title").getText
+  def selectNo: AreYouBiologicalFather.type = {
+    onPage(title)
+    click("value-no")
+    submitPage()
+    AreYouBiologicalFather
+  }
+
+  def selectYes: ApplyingForStatutoryAdoptionPay.type = {
+    onPage(title)
+    click("value")
+    submitPage()
+    ApplyingForStatutoryAdoptionPay
   }
 
 }
