@@ -14,16 +14,20 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.driver
+package uk.gov.hmrc.test.ui.pages.paternityDetails
 
-import com.typesafe.scalalogging.LazyLogging
-import org.openqa.selenium.WebDriver
-import uk.gov.hmrc.webdriver.SingletonDriver
+import uk.gov.hmrc.test.ui.pages.BasePage
 
-trait BrowserDriver extends LazyLogging {
-  logger.info(
-    s"Instantiating Browser: ${sys.props.getOrElse("browser", "'browser' System property not set. This is required")}"
-  )
+object DoYouWantPayToStartOnDOB extends BasePage {
 
-  implicit lazy val driver: WebDriver = SingletonDriver.getInstance()
+  val title =
+    "Would you like your Statutory Paternity Pay and/or Paternity Leave to start on the day the baby was born?"
+
+  def selectNo: DateYouWantSPToStart.type = {
+    onPage(title)
+    click("value-no")
+    submitPage()
+    DateYouWantSPToStart
+  }
+
 }

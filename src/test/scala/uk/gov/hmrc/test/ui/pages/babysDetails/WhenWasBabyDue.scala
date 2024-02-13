@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +14,19 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.pages.babysDetails
 
-object BabyDOB extends BasePage {
+import uk.gov.hmrc.test.ui.pages.BasePage
+import uk.gov.hmrc.test.ui.pages.paternityDetails.HowLongForPaternityLeave
 
-  val babyDOB = "What date was the baby born?"
+object WhenWasBabyDue extends BasePage {
 
-  def enterBabyDOB: DoYouWantPayToStartOnDOB.type = {
-    onPage(babyDOB)
-    enterDOB()
+  val title = "What date was the baby due?"
+
+  def enterBabyDueDate: HowLongForPaternityLeave.type = {
+    onPage(title)
+    enterDate()
     submitPage()
-    DoYouWantPayToStartOnDOB
+    HowLongForPaternityLeave
   }
 }

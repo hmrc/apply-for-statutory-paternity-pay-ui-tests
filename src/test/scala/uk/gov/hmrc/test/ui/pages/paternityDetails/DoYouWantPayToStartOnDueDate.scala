@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,20 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.pages.paternityDetails
 
-object WasBabyDue extends BasePage {
+import uk.gov.hmrc.test.ui.pages.BasePage
 
-  val babyDueDate = "What date was the baby due?"
+object DoYouWantPayToStartOnDueDate extends BasePage {
 
-  def enterBabyDueDate: Unit = {
-    onPage(babyDueDate)
-    enterDate()
+  val title =
+    "Would you like your Statutory Paternity Pay and/or Paternity Leave to start on the day the baby is due?"
+
+  def selectNo: DateYouWantSPToStart.type = {
+    onPage(title)
+    click("value-no")
     submitPage()
+    DateYouWantSPToStart
   }
+
 }

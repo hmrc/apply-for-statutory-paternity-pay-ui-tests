@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,24 +14,26 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.pages.applicationDetails
 
-object AreYouPartnerOrAdoptingChild extends BasePage {
+import uk.gov.hmrc.test.ui.pages.BasePage
 
-  val areYouPartnerOrAdoptingChild = "Are you or a partner becoming adoptive or parental order parents?"
+object AdoptingFromAbroad extends BasePage {
 
-  def selectNo: AreYouBiologicalFather.type = {
-    onPage(areYouPartnerOrAdoptingChild)
+  val title = "Are you or your partner adopting a child from abroad?"
+
+  def selectNo: ReasonForRequesting.type = {
+    onPage(title)
     click("value-no")
     submitPage()
-    AreYouBiologicalFather
+    ReasonForRequesting
   }
 
-  def selectYes: UseDifferentForm.type = {
-    onPage(areYouPartnerOrAdoptingChild)
+  def selectYes: ReasonForRequesting.type = {
+    onPage(title)
     click("value")
     submitPage()
-    UseDifferentForm
+    ReasonForRequesting
   }
 
 }

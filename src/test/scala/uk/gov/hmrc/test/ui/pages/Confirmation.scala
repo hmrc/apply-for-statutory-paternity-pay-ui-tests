@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,10 +18,10 @@ package uk.gov.hmrc.test.ui.pages
 
 object Confirmation extends BasePage {
 
-  val confirmation = "Your application form is ready to send to your employer"
+  val title = "Your application form is ready to send to your employer"
 
   def result: String = {
-    onPage(confirmation)
+    onPage(title)
     findByClassName("govuk-panel__title").getText
   }
 

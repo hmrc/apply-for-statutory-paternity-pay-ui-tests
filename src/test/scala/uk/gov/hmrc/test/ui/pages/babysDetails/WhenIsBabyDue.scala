@@ -14,16 +14,17 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.driver
+package uk.gov.hmrc.test.ui.pages.babysDetails
 
-import com.typesafe.scalalogging.LazyLogging
-import org.openqa.selenium.WebDriver
-import uk.gov.hmrc.webdriver.SingletonDriver
+import uk.gov.hmrc.test.ui.pages.BasePage
 
-trait BrowserDriver extends LazyLogging {
-  logger.info(
-    s"Instantiating Browser: ${sys.props.getOrElse("browser", "'browser' System property not set. This is required")}"
-  )
+object WhenIsBabyDue extends BasePage {
 
-  implicit lazy val driver: WebDriver = SingletonDriver.getInstance()
+  val title = "What date is the baby due?"
+
+  def enterBabyDueDate(): Unit = {
+    onPage(title)
+    enterDate()
+    submitPage()
+  }
 }

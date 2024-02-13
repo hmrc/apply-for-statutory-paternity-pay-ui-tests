@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,22 +18,22 @@ package uk.gov.hmrc.test.ui.pages
 
 import org.scalatest.matchers.should.Matchers
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
+import uk.gov.hmrc.test.ui.pages.applicationDetails.WhereDoYouLive
 
-object ApplyForSPPHomePage extends BasePage with Matchers {
-  val url: String = TestConfiguration.url("apply-for-statutory-paternity-pay-frontend")
-  val sppHomePage = "Ask your employer for Statutory Paternity Pay or Paternity Leave or both"
+object StartPage extends BasePage with Matchers {
+  val url: String   = TestConfiguration.url("apply-for-statutory-paternity-pay-frontend")
+  val title: String = "Ask your employer for Statutory Paternity Pay or Paternity Leave or both - GOV.UK"
 
   def loadPage: this.type = {
     driver.navigate().to(url)
-    onHomePage
+    onHomePage()
     this
   }
 
-  def startApplication: AreYouPartnerOrAdoptingChild.type = {
+  def startApplication: WhereDoYouLive.type = {
     click("start")
-    AreYouPartnerOrAdoptingChild
+    WhereDoYouLive
   }
 
-  def onHomePage: Unit =
-    driver.getTitle shouldBe "Ask your employer for Statutory Paternity Pay or Paternity Leave or both - GOV.UK"
+  def onHomePage(): Unit = driver.getTitle shouldBe title
 }

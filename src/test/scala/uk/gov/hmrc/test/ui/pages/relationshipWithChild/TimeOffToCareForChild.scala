@@ -14,16 +14,27 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.driver
+package uk.gov.hmrc.test.ui.pages.relationshipWithChild
 
-import com.typesafe.scalalogging.LazyLogging
-import org.openqa.selenium.WebDriver
-import uk.gov.hmrc.webdriver.SingletonDriver
+import uk.gov.hmrc.test.ui.pages.BasePage
+import uk.gov.hmrc.test.ui.pages.personalDetails.YourName
 
-trait BrowserDriver extends LazyLogging {
-  logger.info(
-    s"Instantiating Browser: ${sys.props.getOrElse("browser", "'browser' System property not set. This is required")}"
-  )
+object TimeOffToCareForChild extends BasePage {
 
-  implicit lazy val driver: WebDriver = SingletonDriver.getInstance()
+  val title = "Will you use your Paternity Leave to care for the child?"
+
+  def selectYes: YourName.type = {
+    onPage(title)
+    click("value")
+    submitPage()
+    YourName
+  }
+
+  def selectNo: TimeOffToSupportOtherParent.type = {
+    onPage(title)
+    click("value-no")
+    submitPage()
+    TimeOffToSupportOtherParent
+  }
+
 }

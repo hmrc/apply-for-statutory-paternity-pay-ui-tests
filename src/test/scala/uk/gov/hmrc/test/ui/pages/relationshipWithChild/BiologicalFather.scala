@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,18 +14,26 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.pages.relationshipWithChild
 
-object DoYouWantPayToStartOnDOB extends BasePage {
+import uk.gov.hmrc.test.ui.pages.BasePage
 
-  val doYouWantPayToStartOnDOB =
-    "Would you like your Statutory Paternity Pay and/or Paternity Leave to start on the day the baby was born?"
+object BiologicalFather extends BasePage {
 
-  def selectNo: DateYouWantSPToStart.type = {
-    onPage(doYouWantPayToStartOnDOB)
+  val title = "Are you the child’s biological father?"
+
+  def selectYes: CaringResponsibility.type = {
+    onPage(title)
+    click("value")
+    submitPage()
+    CaringResponsibility
+  }
+
+  def selectNo: MarriageCivilPartnershipWithMother.type = {
+    onPage(title)
     click("value-no")
     submitPage()
-    DateYouWantSPToStart
+    MarriageCivilPartnershipWithMother
   }
 
 }

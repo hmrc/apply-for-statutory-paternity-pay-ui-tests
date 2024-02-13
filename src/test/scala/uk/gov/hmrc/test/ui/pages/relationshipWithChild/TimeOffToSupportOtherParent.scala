@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,19 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.pages.relationshipWithChild
 
-object IsBabyDue extends BasePage {
+import uk.gov.hmrc.test.ui.pages.BasePage
+import uk.gov.hmrc.test.ui.pages.personalDetails.YourName
 
-  val babyDueDate = "What date is the baby due?"
+object TimeOffToSupportOtherParent extends BasePage {
 
-  def enterBabyDueDate: Unit = {
-    onPage(babyDueDate)
-    enterDate()
+  val title = "Will you use your Paternity Leave to support your partner in caring for the child?"
+
+  def selectYes: YourName.type = {
+    onPage(title)
+    click("value")
     submitPage()
+    YourName
   }
 }

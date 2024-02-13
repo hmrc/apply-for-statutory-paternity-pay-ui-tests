@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +14,24 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.pages.personalDetails
 
-object WhatIsYourName extends BasePage {
+import uk.gov.hmrc.domain.Generator
+import uk.gov.hmrc.test.ui.pages.BasePage
+import uk.gov.hmrc.test.ui.pages.babysDetails.HasBabyBeenBornYet
 
-  val whatIsYourName = "What is your name?"
+object YourNino extends BasePage {
 
-  def enterName: WhatIsYourNino.type = {
-    onPage(whatIsYourName)
-    enter("firstName", "Zaphod")
-    enter("lastName", "Beeblebrox")
+  val title = "What is your National Insurance number?"
+
+  private val ninoGenerator = new Generator(random)
+
+  def generateNino: String = ninoGenerator.nextNino.toString()
+
+  def enterNino: HasBabyBeenBornYet.type = {
+    onPage(title)
+    enter("value", generateNino)
     submitPage()
-    WhatIsYourNino
+    HasBabyBeenBornYet
   }
 }

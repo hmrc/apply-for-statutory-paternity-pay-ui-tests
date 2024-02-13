@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,19 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.pages.paternityDetails
 
-object UseDifferentForm extends BasePage {
+import uk.gov.hmrc.test.ui.pages.{BasePage, CheckYourAnswers}
 
-  val useDifferentForm = "You must use a different form to claim Statutory Paternity Pay"
+object HowLongForPaternityLeave extends BasePage {
 
-  def result: String = {
-    onPage(useDifferentForm)
-    findByClassName("govuk-panel__title").getText
+  val title = "How long will you be on Paternity Leave for?"
+
+  def select1Week: CheckYourAnswers.type = {
+    onPage(title)
+    click("value_0")
+    submitPage()
+    CheckYourAnswers
   }
 
 }

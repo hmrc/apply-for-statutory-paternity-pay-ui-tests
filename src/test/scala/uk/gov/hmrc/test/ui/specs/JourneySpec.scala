@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,9 +16,12 @@
 
 package uk.gov.hmrc.test.ui.specs
 
-import uk.gov.hmrc.test.ui.pages.CheckYourAnswers.confirmAnswers
-import uk.gov.hmrc.test.ui.pages.Confirmation.result
 import uk.gov.hmrc.test.ui.pages._
+import uk.gov.hmrc.test.ui.pages.applicationDetails._
+import uk.gov.hmrc.test.ui.pages.babysDetails._
+import uk.gov.hmrc.test.ui.pages.paternityDetails._
+import uk.gov.hmrc.test.ui.pages.personalDetails._
+import uk.gov.hmrc.test.ui.pages.relationshipWithChild._
 import uk.gov.hmrc.test.ui.specs.tags.ZapTests
 
 class JourneySpec extends BaseSpec {
@@ -26,78 +29,155 @@ class JourneySpec extends BaseSpec {
   Feature("Journeys for completing form and generating PDF") {
 
     Scenario(
-      "Father with responsibility for child who has been born applying for SPP not on the day it was born",
+      "Biological parent in England " +
+        "whose baby has been born, " +
+        "who will be using leave to care for their child.",
       ZapTests
     ) {
       Given("I am on the Apply for SSP Home Page")
-      ApplyForSPPHomePage.loadPage.startApplication
+      StartPage.loadPage.startApplication
 
       When("I provide details")
-      AreYouPartnerOrAdoptingChild.selectNo
-      AreYouBiologicalFather.selectYes
-      ResponsibilityForChild.selectYes
-      TimeOffWork.selectYes.enterName.enterNino
-      HasBabyBeenBornYet.selectYes.enterBabyDOB
+      WhereDoYouLive.selectEngland
+      AdoptingOrParentalOrder.selectNo
+      BiologicalFather.selectYes
+      CaringResponsibility.selectYes
+      TimeOffToCareForChild.selectYes
+      YourName.enterName
+      YourNino.enterNino
+      HasBabyBeenBornYet.selectYes
+      WhenWasBabyBorn.enterBabyDOB
       DoYouWantPayToStartOnDOB.selectNo
-      DateYouWantSPToStart.enterStartDate.enterBabyDueDate
+      DateYouWantSPToStart.enterStartDate
+      WhenWasBabyDue.enterBabyDueDate
       HowLongForPaternityLeave.select1Week
 
       Then("I confirm my answers and will be given the option to download the form")
-      confirmAnswers
-      result should be("Your application form is ready to send to your employer")
+      CheckYourAnswers.confirmAnswers
+      Confirmation.result should be("Your application form is ready to send to your employer")
     }
 
     Scenario(
-      "Partner supporting the mother applying for SPP for unborn baby",
+      "Biological parent in England " +
+        "in an enduring family relationship, " +
+        "whose baby has not yet been born, " +
+        "who will be using leave to support their partner.",
       ZapTests
     ) {
       Given("I am on the Apply for SSP Home Page")
-      ApplyForSPPHomePage.loadPage.startApplication
+      StartPage.loadPage.startApplication
 
       When("I provide details")
-      AreYouPartnerOrAdoptingChild.selectNo
-      AreYouBiologicalFather.selectNo
+      WhereDoYouLive.selectEngland
+      AdoptingOrParentalOrder.selectNo
+      BiologicalFather.selectNo
       MarriageCivilPartnershipWithMother.selectNo
       EnduringFamilyRelationship.selectYes
-      ResponsibilityForChild.selectYes
-      TimeOffWork.selectNo
-      SupportChildsMother.selectYes.enterName.enterNino
-      HasBabyBeenBornYet.selectNo.enterBabyDueDate
-      DoYouWantPayToStartOnDueDate.selectNo.enterStartDateDue
+      CaringResponsibility.selectYes
+      TimeOffToCareForChild.selectNo
+      TimeOffToSupportOtherParent.selectYes
+      YourName.enterName
+      YourNino.enterNino
+      HasBabyBeenBornYet.selectNo
+      WhenIsBabyDue.enterBabyDueDate()
+      DoYouWantPayToStartOnDueDate.selectNo
+      DateYouWantSPToStart.enterStartDateDue
       HowLongForPaternityLeave.select1Week
 
       Then("I confirm my answers and will be given the option to download the form")
-      confirmAnswers
+      CheckYourAnswers.confirmAnswers
       Confirmation.result should be("Your application form is ready to send to your employer")
+    }
+
+    Scenario(
+      "Adoptive parent in England " +
+        "in an enduring family relationship, " +
+        "who will be using leave to support their partner.",
+      ZapTests
+    ) {
+      Given("I am on the Apply for SSP Home Page")
+      StartPage.loadPage.startApplication
+
+      When("I provide details")
+      WhereDoYouLive.selectEngland
+      AdoptingOrParentalOrder.selectYes
+      ApplyingForStatutoryAdoptionPay.selectNo
+      AdoptingFromAbroad.selectNo
+      ReasonForRequesting.selectAdopting
+      MarriageCivilPartnershipAdopting.selectNo
+      EnduringFamilyRelationshipAdopting.selectYes
+      CaringResponsibility.selectYes
+      TimeOffToCareForChild.selectYes
+
+      Then("I will reach the 'What is your name' page")
+      YourName.onPage(YourName.title)
+    }
+
+    Scenario(
+      "Supporting adoptive parent in England " +
+        "in an enduring family relationship, " +
+        "who will be using leave to support their partner.",
+      ZapTests
+    ) {
+      Given("I am on the Apply for SSP Home Page")
+      StartPage.loadPage.startApplication
+
+      When("I provide details")
+      WhereDoYouLive.selectEngland
+      AdoptingOrParentalOrder.selectYes
+      ApplyingForStatutoryAdoptionPay.selectNo
+      AdoptingFromAbroad.selectNo
+      ReasonForRequesting.selectSupportingAdopting
+      MarriageCivilPartnershipSupportingAdopting.selectNo
+      EnduringFamilyRelationshipSupportingAdopting.selectYes
+      CaringResponsibility.selectYes
+      TimeOffToCareForChild.selectYes
+
+      Then("I will reach the 'What is your name' page")
+      YourName.onPage(YourName.title)
+    }
+
+    Scenario(
+      "Parental order parent in England " +
+        "in an enduring family relationship, " +
+        "who will be using leave to support their partner.",
+      ZapTests
+    ) {
+      Given("I am on the Apply for SSP Home Page")
+      StartPage.loadPage.startApplication
+
+      When("I provide details")
+      WhereDoYouLive.selectEngland
+      AdoptingOrParentalOrder.selectYes
+      ApplyingForStatutoryAdoptionPay.selectNo
+      AdoptingFromAbroad.selectNo
+      ReasonForRequesting.selectParentalOrder
+      MarriageCivilPartnershipParentalOrder.selectNo
+      EnduringFamilyRelationshipParentalOrder.selectYes
+      CaringResponsibility.selectYes
+      TimeOffToCareForChild.selectYes
+
+      Then("I will reach the 'What is your name' page")
+      YourName.onPage(YourName.title)
     }
 
   }
 
   Feature("Kickout Journeys") {
-    Scenario("Applicant is becoming adoptive or parental order parents", ZapTests) {
-
-      Given("I am on the Apply for SSP Home Page")
-      ApplyForSPPHomePage.loadPage.startApplication
-
-      When("I select yes to becoming adoptive or parental order parents")
-      AreYouPartnerOrAdoptingChild.selectYes
-
-      Then("I should be instructed to use a different form")
-      UseDifferentForm.result should be("You must use a different form to claim Statutory Paternity Pay")
-    }
 
     Scenario("Applicant is not eligible for Statutory Paternity Pay", ZapTests) {
 
       Given("I am on the Apply for SSP Home Page")
-      ApplyForSPPHomePage.loadPage.startApplication
+      StartPage.loadPage.startApplication
 
       When("I answer that I will not have responsibility for caring for the child")
-      AreYouPartnerOrAdoptingChild.selectNo
-      AreYouBiologicalFather.selectYes
-      ResponsibilityForChild.selectNo
+      WhereDoYouLive.selectEngland
+      AdoptingOrParentalOrder.selectNo
+      BiologicalFather.selectYes
+      CaringResponsibility.selectNo
 
       Then("I will be told I am not eligible for Statutory Paternity Pay ")
-      Ineligible.result should be("You are not eligible for Statutory Paternity Pay")
+      NotEligible.result should be("You are not eligible for Statutory Paternity Pay and Statutory Paternity Leave")
     }
   }
 

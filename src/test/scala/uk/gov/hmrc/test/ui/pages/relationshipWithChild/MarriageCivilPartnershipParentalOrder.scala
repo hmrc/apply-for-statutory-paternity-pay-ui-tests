@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +14,26 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.pages.relationshipWithChild
 
-object EnduringFamilyRelationship extends BasePage {
+import uk.gov.hmrc.test.ui.pages.BasePage
 
-  val enduringFamilyRelationship = "Do you live with the mother and child in an enduring family relationship?"
+object MarriageCivilPartnershipParentalOrder extends BasePage {
 
-  def selectYes: ResponsibilityForChild.type = {
-    onPage(enduringFamilyRelationship)
+  val title = "Are you in a marriage or civil partnership with the other parental order parent?"
+
+  def selectYes: CaringResponsibility.type = {
+    onPage(title)
     click("value")
     submitPage()
-    ResponsibilityForChild
+    CaringResponsibility
+  }
+
+  def selectNo: EnduringFamilyRelationshipParentalOrder.type = {
+    onPage(title)
+    click("value-no")
+    submitPage()
+    EnduringFamilyRelationshipParentalOrder
   }
 
 }

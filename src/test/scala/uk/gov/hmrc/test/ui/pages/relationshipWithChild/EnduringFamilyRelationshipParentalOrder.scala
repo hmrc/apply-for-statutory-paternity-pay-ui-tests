@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,24 +14,19 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.pages.relationshipWithChild
 
-object DateYouWantSPToStart extends BasePage {
+import uk.gov.hmrc.test.ui.pages.BasePage
 
-  val dateYouWantSPToStart =
-    "What date would you like your Statutory Paternity Pay and/or Paternity Leave to start?"
+object EnduringFamilyRelationshipParentalOrder extends BasePage {
 
-  def enterStartDate: WasBabyDue.type = {
-    onPage(dateYouWantSPToStart)
-    enterDate()
+  val title = "Do you live with the other parental order parent in an enduring family relationship?"
+
+  def selectYes: CaringResponsibility.type = {
+    onPage(title)
+    click("value")
     submitPage()
-    WasBabyDue
+    CaringResponsibility
   }
 
-  def enterStartDateDue: WasBabyDue.type = {
-    onPage(dateYouWantSPToStart)
-    enterTomorrowDate()
-    submitPage()
-    WasBabyDue
-  }
 }

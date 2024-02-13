@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,18 +14,27 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.pages.applicationDetails
 
-object DoYouWantPayToStartOnDueDate extends BasePage {
+import uk.gov.hmrc.test.ui.pages.BasePage
+import uk.gov.hmrc.test.ui.pages.relationshipWithChild.BiologicalFather
 
-  val doYouWantPayToStartOnDueDate =
-    "Would you like your Statutory Paternity Pay and/or Paternity Leave to start on the day the baby is due?"
+object AdoptingOrParentalOrder extends BasePage {
 
-  def selectNo: DateYouWantSPToStart.type = {
-    onPage(doYouWantPayToStartOnDueDate)
+  val title = "Are you or your partner adopting a child or becoming parental order parents?"
+
+  def selectNo: BiologicalFather.type = {
+    onPage(title)
     click("value-no")
     submitPage()
-    DateYouWantSPToStart
+    BiologicalFather
+  }
+
+  def selectYes: ApplyingForStatutoryAdoptionPay.type = {
+    onPage(title)
+    click("value")
+    submitPage()
+    ApplyingForStatutoryAdoptionPay
   }
 
 }

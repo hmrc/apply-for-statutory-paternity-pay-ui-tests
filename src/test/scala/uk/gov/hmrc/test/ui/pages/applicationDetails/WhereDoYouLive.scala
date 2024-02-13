@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,24 +14,26 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.pages.applicationDetails
 
-object ResponsibilityForChild extends BasePage {
+import uk.gov.hmrc.test.ui.pages.BasePage
 
-  val responsibilityForChild = "Will you have responsibility for caring for the child?"
+object WhereDoYouLive extends BasePage {
 
-  def selectYes: TimeOffWork.type = {
-    onPage(responsibilityForChild)
-    click("value")
+  val title = "Where do you live?"
+
+  def selectEngland: AdoptingOrParentalOrder.type = {
+    onPage(title)
+    click("value_0")
     submitPage()
-    TimeOffWork
+    AdoptingOrParentalOrder
   }
 
-  def selectNo: Ineligible.type = {
-    onPage(responsibilityForChild)
-    click("value-no")
+  def selectNorthernIreland: AdoptingOrParentalOrder.type = {
+    onPage(title)
+    click("value_3")
     submitPage()
-    Ineligible
+    AdoptingOrParentalOrder
   }
 
 }

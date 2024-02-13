@@ -14,16 +14,26 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.driver
+package uk.gov.hmrc.test.ui.pages.applicationDetails
 
-import com.typesafe.scalalogging.LazyLogging
-import org.openqa.selenium.WebDriver
-import uk.gov.hmrc.webdriver.SingletonDriver
+import uk.gov.hmrc.test.ui.pages.{BasePage, NotEligible}
 
-trait BrowserDriver extends LazyLogging {
-  logger.info(
-    s"Instantiating Browser: ${sys.props.getOrElse("browser", "'browser' System property not set. This is required")}"
-  )
+object ApplyingForStatutoryAdoptionPay extends BasePage {
 
-  implicit lazy val driver: WebDriver = SingletonDriver.getInstance()
+  val title = "Are you applying for Statutory Adoption Pay and Leave?"
+
+  def selectNo: AdoptingFromAbroad.type = {
+    onPage(title)
+    click("value-no")
+    submitPage()
+    AdoptingFromAbroad
+  }
+
+  def selectYes: NotEligible.type = {
+    onPage(title)
+    click("value")
+    submitPage()
+    NotEligible
+  }
+
 }

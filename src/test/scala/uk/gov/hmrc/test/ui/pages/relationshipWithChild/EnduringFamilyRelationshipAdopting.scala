@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +14,19 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.pages.relationshipWithChild
 
-object SupportChildsMother extends BasePage {
+import uk.gov.hmrc.test.ui.pages.BasePage
 
-  val supportChildsMother = "Will you use your Paternity Leave to support the child’s mother?"
+object EnduringFamilyRelationshipAdopting extends BasePage {
 
-  def selectYes: WhatIsYourName.type = {
-    onPage(supportChildsMother)
+  val title = "Do you live with the other person adopting or intending to adopt the child in an enduring family relationship?"
+
+  def selectYes: CaringResponsibility.type = {
+    onPage(title)
     click("value")
     submitPage()
-    WhatIsYourName
+    CaringResponsibility
   }
+
 }

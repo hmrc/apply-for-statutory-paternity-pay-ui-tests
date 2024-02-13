@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,21 +14,27 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
-import uk.gov.hmrc.domain.Generator
+package uk.gov.hmrc.test.ui.pages.paternityDetails
 
-object WhatIsYourNino extends BasePage {
+import uk.gov.hmrc.test.ui.pages.BasePage
+import uk.gov.hmrc.test.ui.pages.babysDetails.WhenWasBabyDue
 
-  val whatIsYourNino = "What is your National Insurance number?"
+object DateYouWantSPToStart extends BasePage {
 
-  private val ninoGenerator = new Generator(random)
+  val title =
+    "What date would you like your Statutory Paternity Pay and/or Paternity Leave to start?"
 
-  def generateNino: String = ninoGenerator.nextNino.toString()
-
-  def enterNino: HasBabyBeenBornYet.type = {
-    onPage(whatIsYourNino)
-    enter("value", generateNino)
+  def enterStartDate: WhenWasBabyDue.type = {
+    onPage(title)
+    enterDate()
     submitPage()
-    HasBabyBeenBornYet
+    WhenWasBabyDue
+  }
+
+  def enterStartDateDue: WhenWasBabyDue.type = {
+    onPage(title)
+    enterTomorrowDate()
+    submitPage()
+    WhenWasBabyDue
   }
 }
