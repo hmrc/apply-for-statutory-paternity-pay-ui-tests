@@ -17,16 +17,15 @@
 package uk.gov.hmrc.test.ui.pages.babysDetails
 
 import uk.gov.hmrc.test.ui.pages.BasePage
-import uk.gov.hmrc.test.ui.pages.paternityDetails.DoYouWantPayToStartOnDOB
 
 object WhenWasBabyBorn extends BasePage {
 
   val title = "What date was the baby born?"
 
-  def enterBabyDOB: DoYouWantPayToStartOnDOB.type = {
+  def enterBabyDOB: WhenIsBabyDue.type = {
     onPage(title)
     enterDOB()
     submitPage()
-    DoYouWantPayToStartOnDOB
+    WhenIsBabyDue
   }
 }
