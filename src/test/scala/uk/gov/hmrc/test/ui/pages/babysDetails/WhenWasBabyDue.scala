@@ -17,16 +17,16 @@
 package uk.gov.hmrc.test.ui.pages.babysDetails
 
 import uk.gov.hmrc.test.ui.pages.BasePage
-import uk.gov.hmrc.test.ui.pages.paternityDetails.HowLongForPaternityLeave
+import uk.gov.hmrc.test.ui.pages.paternityDetails.DateYouWantSPToStart
 
 object WhenWasBabyDue extends BasePage {
 
   val title = "What date was the baby due?"
 
-  def enterBabyDueDate: HowLongForPaternityLeave.type = {
+  def enterBabyDueDate: DateYouWantSPToStart.type = {
     onPage(title)
     enterDate()
     submitPage()
-    HowLongForPaternityLeave
+    DateYouWantSPToStart
   }
 }
