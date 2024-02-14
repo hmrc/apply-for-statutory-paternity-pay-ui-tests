@@ -22,6 +22,8 @@ import uk.gov.hmrc.test.ui.pages.babysDetails._
 import uk.gov.hmrc.test.ui.pages.paternityDetails._
 import uk.gov.hmrc.test.ui.pages.personalDetails._
 import uk.gov.hmrc.test.ui.pages.relationshipWithChild._
+import uk.gov.hmrc.test.ui.pages.relationshipWithChild.adoption._
+import uk.gov.hmrc.test.ui.pages.relationshipWithChild.adoptionFromAbroad._
 import uk.gov.hmrc.test.ui.specs.tags.ZapTests
 
 class JourneySpec extends BaseSpec {
@@ -90,7 +92,8 @@ class JourneySpec extends BaseSpec {
     Scenario(
       "Adoptive parent in England " +
         "in an enduring family relationship, " +
-        "who will be using leave to support their partner.",
+        "who will be using leave to support their partner, " +
+        "where the child has been placed.",
       ZapTests
     ) {
       Given("I am on the Apply for SSP Home Page")
@@ -106,15 +109,21 @@ class JourneySpec extends BaseSpec {
       EnduringFamilyRelationshipAdopting.selectYes
       CaringResponsibility.selectYes
       TimeOffToCareForChild.selectYes
+      YourName.enterName
+      YourNino.enterNino
+      MatchDate.enterMatchDate
+      ChildPlaced.selectYes
+      DateChildPlaced.enterPlacementDate
 
-      Then("I will reach the 'What is your name' page")
-      YourName.onPage(YourName.title)
+      Then("I will reach the 'What date would you like your Statutory Paternity Pay to start' page")
+      DateYouWantSPToStart.onPage(DateYouWantSPToStart.title)
     }
 
     Scenario(
       "Supporting adoptive parent in England " +
         "in an enduring family relationship, " +
-        "who will be using leave to support their partner.",
+        "who will be using leave to support their partner, " +
+        "where the child has not yet been placed.",
       ZapTests
     ) {
       Given("I am on the Apply for SSP Home Page")
@@ -130,9 +139,74 @@ class JourneySpec extends BaseSpec {
       EnduringFamilyRelationshipSupportingAdopting.selectYes
       CaringResponsibility.selectYes
       TimeOffToCareForChild.selectYes
+      YourName.enterName
+      YourNino.enterNino
+      MatchDate.enterMatchDate
+      ChildPlaced.selectNo
+      DateChildExpectedPlaced.enterExpectedPlacementDate
 
-      Then("I will reach the 'What is your name' page")
-      YourName.onPage(YourName.title)
+      Then("I will reach the 'What date would you like your Statutory Paternity Pay to start' page")
+      DateYouWantSPToStart.onPage(DateYouWantSPToStart.title)
+    }
+
+    Scenario(
+      "Adoptive parent in England who is adopting from abroad " +
+        "in an enduring family relationship, " +
+        "who will be using leave to support their partner, " +
+        "where the child has entered the UK.",
+      ZapTests
+    ) {
+      Given("I am on the Apply for SSP Home Page")
+      StartPage.loadPage.startApplication
+
+      When("I provide details")
+      WhereDoYouLive.selectEngland
+      AdoptingOrParentalOrder.selectYes
+      ApplyingForStatutoryAdoptionPay.selectNo
+      AdoptingFromAbroad.selectYes
+      ReasonForRequesting.selectAdopting
+      MarriageCivilPartnershipAdopting.selectNo
+      EnduringFamilyRelationshipAdopting.selectYes
+      CaringResponsibility.selectYes
+      TimeOffToCareForChild.selectYes
+      YourName.enterName
+      YourNino.enterNino
+      NotificationDate.enterNotificationDate
+      ChildEnteredUk.selectHasEntered
+      DateChildEnteredUk.enterEntryDate
+
+      Then("I will reach the 'What date would you like your Statutory Paternity Pay to start' page")
+      DateYouWantSPToStart.onPage(DateYouWantSPToStart.title)
+    }
+
+    Scenario(
+      "Adoptive parent in England who is adopting from abroad " +
+        "in an enduring family relationship, " +
+        "who will be using leave to support their partner, " +
+        "where the child has not entered the UK.",
+      ZapTests
+    ) {
+      Given("I am on the Apply for SSP Home Page")
+      StartPage.loadPage.startApplication
+
+      When("I provide details")
+      WhereDoYouLive.selectEngland
+      AdoptingOrParentalOrder.selectYes
+      ApplyingForStatutoryAdoptionPay.selectNo
+      AdoptingFromAbroad.selectYes
+      ReasonForRequesting.selectAdopting
+      MarriageCivilPartnershipAdopting.selectNo
+      EnduringFamilyRelationshipAdopting.selectYes
+      CaringResponsibility.selectYes
+      TimeOffToCareForChild.selectYes
+      YourName.enterName
+      YourNino.enterNino
+      NotificationDate.enterNotificationDate
+      ChildEnteredUk.selectHasNotEntered
+      DateChildWillEnterUk.enterExpectedEntryDate
+
+      Then("I will reach the 'What date would you like your Statutory Paternity Pay to start' page")
+      DateYouWantSPToStart.onPage(DateYouWantSPToStart.title)
     }
 
     Scenario(
@@ -154,9 +228,14 @@ class JourneySpec extends BaseSpec {
       EnduringFamilyRelationshipParentalOrder.selectYes
       CaringResponsibility.selectYes
       TimeOffToCareForChild.selectYes
+      YourName.enterName
+      YourNino.enterNino
+      HasBabyBeenBornYet.selectNo
+      WhenIsBabyDue.enterBabyDueDate()
+      DateYouWantSPToStart.enterStartDateDue
 
-      Then("I will reach the 'What is your name' page")
-      YourName.onPage(YourName.title)
+      Then("I will reach the 'What date would you like your Statutory Paternity Pay to start' page")
+      DateYouWantSPToStart.onPage(DateYouWantSPToStart.title)
     }
 
   }
