@@ -17,32 +17,40 @@
 package uk.gov.hmrc.test.ui.specs
 
 import org.mongodb.scala.MongoClient
+import org.mongodb.scala.model.Filters
 import org.scalatest._
 import org.scalatest.concurrent.Eventually
 import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.matchers.should.Matchers
+import org.scalatestplus.selenium.WebBrowser
+import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
+
+import scala.concurrent.Await
 import scala.concurrent.duration._
 import scala.language.postfixOps
-import org.scalatestplus.selenium.WebBrowser
-import uk.gov.hmrc.test.ui.driver.BrowserDriver
-import uk.gov.hmrc.webdriver.SingletonDriver
-import scala.concurrent.Await
-import scala.util.Try
 
 trait BaseSpec
     extends AnyFeatureSpec
     with GivenWhenThen
-    with BeforeAndAfterAll
     with BeforeAndAfterEach
     with Matchers
     with WebBrowser
-    with BrowserDriver
+    with Browser
+    with ScreenshotOnFailure
     with Eventually {
 
-  override def beforeEach(): Unit =
+  override def beforeEach(): Unit = {
+    super.beforeEach()
     dropMongo()
+    startBrowser()
+  }
 
-  def dropMongo(): Unit = {
+  override def afterEach(): Unit = {
+    quitBrowser()
+    super.afterEach()
+  }
+
+  private def dropMongo(): Unit = {
 
     val mongoClient: MongoClient = MongoClient()
 
@@ -57,22 +65,9 @@ trait BaseSpec
         mongoClient
           .getDatabase(dbName)
           .getCollection(collectionName)
-          .drop()
-          .head(),
+          .deleteMany(Filters.empty())
+          .toFuture(),
         10 seconds
       )
-  }
-  override def afterAll(): Unit   =
-    Try(SingletonDriver.closeInstance())
-
-  override def withFixture(test: NoArgTest): Outcome = {
-    val fixture = super.withFixture(test)
-    if (!fixture.isSucceeded) {
-      val screenshotName = test.name.replaceAll(" ", "_").replaceAll(":", "") + ".png"
-      setCaptureDir("./target/test-reports/html-report/screenshots/")
-      capture to screenshotName
-      markup(s"<img src='screenshots/$screenshotName' />")
-    }
-    fixture
   }
 }
