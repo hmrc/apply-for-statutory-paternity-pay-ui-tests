@@ -59,6 +59,13 @@ trait BasePage extends BrowserDriver with Matchers {
     findByID("value.month").sendKeys(tomorrowMonth)
     findByID("value.year").sendKeys(tomorrowYear)
   }
+
+  def enterDate(date: LocalDate): Unit = {
+    findByID("value.day").sendKeys(date.getDayOfMonth.toString)
+    findByID("value.month").sendKeys(date.getMonthValue.toString)
+    findByID("value.year").sendKeys(date.getYear.toString)
+  }
+
   val random = new Random
 
   def submitPage(): Unit =

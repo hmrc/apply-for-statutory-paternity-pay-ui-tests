@@ -14,35 +14,17 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages.paternityDetails
+package uk.gov.hmrc.test.ui.pages.babysDetails
 
 import uk.gov.hmrc.test.ui.pages.BasePage
-import uk.gov.hmrc.test.ui.pages.babysDetails.WhenWasBabyDue
 
-import java.time.LocalDate
+object AdoptionExpectedPlacedDate extends BasePage {
 
-object DateYouWantSPToStart extends BasePage {
+  val title = "What date is the child expected to be placed?"
 
-  val title =
-    "What date would you like your Statutory Paternity Pay and/or paternity leave to start?"
-
-  def enterStartDateToday: WhenWasBabyDue.type = {
-    onPage(title)
-    enterTodaysDate()
-    submitPage()
-    WhenWasBabyDue
-  }
-
-  def enterStartDateTomorrow: WhenWasBabyDue.type = {
+  def enterExpectedDate() = {
     onPage(title)
     enterTomorrowDate()
-    submitPage()
-    WhenWasBabyDue
-  }
-
-  def enterStartDate(date: LocalDate) = {
-    onPage(title)
-    enterDate(date)
     submitPage()
   }
 }
