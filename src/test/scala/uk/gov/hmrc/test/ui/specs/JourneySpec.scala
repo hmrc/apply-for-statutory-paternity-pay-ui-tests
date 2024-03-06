@@ -48,8 +48,8 @@ class JourneySpec extends BaseSpec {
       HasBabyBeenBornYet.selectYes
       WhenWasBabyBorn.enterBabyDOB
       WhenWasBabyDue.enterBabyDueDate
-      DateYouWantSPToStart.enterStartDate
       HowLongForPaternityLeave.select1Week
+      DateYouWantSPToStart.enterStartDate
 
       Then("I confirm my answers and will be given the option to download the form")
       CheckYourAnswers.confirmAnswers
@@ -79,8 +79,8 @@ class JourneySpec extends BaseSpec {
       YourNino.enterNino
       HasBabyBeenBornYet.selectNo
       WhenIsBabyDue.enterBabyDueDate()
-      DateYouWantSPToStart.enterStartDateDue
       HowLongForPaternityLeave.select1Week
+      DateYouWantSPToStart.enterStartDateDue
 
       Then("I confirm my answers and will be given the option to download the form")
       CheckYourAnswers.confirmAnswers

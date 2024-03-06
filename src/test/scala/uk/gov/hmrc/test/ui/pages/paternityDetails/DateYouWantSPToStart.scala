@@ -22,7 +22,7 @@ import uk.gov.hmrc.test.ui.pages.babysDetails.WhenWasBabyDue
 object DateYouWantSPToStart extends BasePage {
 
   val title =
-    "What date would you like your Statutory Paternity Pay and/or Paternity Leave to start?"
+    "What date would you like your Statutory Paternity Pay and/or paternity leave to start?"
 
   def enterStartDate: WhenWasBabyDue.type = {
     onPage(title)
