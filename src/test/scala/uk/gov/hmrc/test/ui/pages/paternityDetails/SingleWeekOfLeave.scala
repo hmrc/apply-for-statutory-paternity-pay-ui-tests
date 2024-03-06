@@ -14,28 +14,19 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages.babysDetails
+package uk.gov.hmrc.test.ui.pages.paternityDetails
 
 import uk.gov.hmrc.test.ui.pages.BasePage
-import uk.gov.hmrc.test.ui.pages.paternityDetails.DateYouWantSPToStart
 
 import java.time.LocalDate
 
-object WhenIsBabyDue extends BasePage {
+object SingleWeekOfLeave extends BasePage {
 
-  val title = "What date is the baby due?"
+  val title = "When do you want your Statutory Paternity Pay and/or Paternity leave to start? (optional)"
 
-  def enterBabyDueDate(): DateYouWantSPToStart.type = {
-    onPage(title)
-    enterTodaysDate()
-    submitPage()
-    DateYouWantSPToStart
-  }
-
-  def enterBabyDueDate(date: LocalDate) = {
+  def enterStartDate(date: LocalDate) = {
     onPage(title)
     enterDate(date)
     submitPage()
-    DateYouWantSPToStart
   }
 }

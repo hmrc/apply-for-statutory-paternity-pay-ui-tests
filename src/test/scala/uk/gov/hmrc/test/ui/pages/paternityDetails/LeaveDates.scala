@@ -14,28 +14,32 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages.babysDetails
+package uk.gov.hmrc.test.ui.pages.paternityDetails
 
-import uk.gov.hmrc.test.ui.pages.BasePage
-import uk.gov.hmrc.test.ui.pages.paternityDetails.DateYouWantSPToStart
+import uk.gov.hmrc.test.ui.pages.{BasePage, CheckYourAnswers}
 
-import java.time.LocalDate
+object LeaveDates extends BasePage {
 
-object WhenIsBabyDue extends BasePage {
+  val title = "Leave dates"
 
-  val title = "What date is the baby due?"
-
-  def enterBabyDueDate(): DateYouWantSPToStart.type = {
+  def select1Week(): CheckYourAnswers.type = {
     onPage(title)
-    enterTodaysDate()
+    click("value_0")
     submitPage()
-    DateYouWantSPToStart
+    CheckYourAnswers
   }
 
-  def enterBabyDueDate(date: LocalDate) = {
+  def select2Week(): CheckYourAnswers.type = {
     onPage(title)
-    enterDate(date)
+    click("value_1")
     submitPage()
-    DateYouWantSPToStart
+    CheckYourAnswers
   }
+
+  def selectNotSure() = {
+    onPage(title)
+    click("value_2")
+    submitPage()
+  }
+
 }

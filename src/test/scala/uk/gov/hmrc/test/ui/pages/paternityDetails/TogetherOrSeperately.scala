@@ -14,28 +14,23 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages.babysDetails
+package uk.gov.hmrc.test.ui.pages.paternityDetails
 
-import uk.gov.hmrc.test.ui.pages.BasePage
-import uk.gov.hmrc.test.ui.pages.paternityDetails.DateYouWantSPToStart
+import uk.gov.hmrc.test.ui.pages.{BasePage}
 
-import java.time.LocalDate
+object TogetherOrSeperately extends BasePage {
 
-object WhenIsBabyDue extends BasePage {
+  val title = "Would you like to take your leave together or separately?"
 
-  val title = "What date is the baby due?"
-
-  def enterBabyDueDate(): DateYouWantSPToStart.type = {
+  def together() = {
     onPage(title)
-    enterTodaysDate()
+    click("value_0")
     submitPage()
-    DateYouWantSPToStart
   }
 
-  def enterBabyDueDate(date: LocalDate) = {
+  def separately() = {
     onPage(title)
-    enterDate(date)
+    click("value_1")
     submitPage()
-    DateYouWantSPToStart
   }
 }
