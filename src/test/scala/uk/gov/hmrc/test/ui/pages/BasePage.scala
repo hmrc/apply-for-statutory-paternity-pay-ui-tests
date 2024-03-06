@@ -48,7 +48,7 @@ trait BasePage extends BrowserDriver with Matchers {
     findByID("value.month").sendKeys(yesterdayMonth)
     findByID("value.year").sendKeys(yesterdayYear)
   }
-  def enterDate(): Unit = {
+  def enterTodaysDate(): Unit = {
     findByID("value.day").sendKeys(todayDay)
     findByID("value.month").sendKeys(todayMonth)
     findByID("value.year").sendKeys(todayYear)

@@ -25,7 +25,7 @@ object WhenIsBabyDue extends BasePage {
 
   def enterBabyDueDate(): DateYouWantSPToStart.type = {
     onPage(title)
-    enterDate()
+    enterTodaysDate()
     submitPage()
     DateYouWantSPToStart
   }
