@@ -18,14 +18,13 @@ package uk.gov.hmrc.test.ui.pages.babysDetails
 
 import uk.gov.hmrc.test.ui.pages.BasePage
 
-object WhenWasBabyBorn extends BasePage {
+object DateChildEnteredUk extends BasePage {
 
-  val title = "What date was the baby born?"
+  val title = "What date did the child enter the UK?"
 
-  def enterBabyDOB: WhenIsBabyDue.type = {
+  def enterDateEnteredUk() = {
     onPage(title)
     enterYesterdaysDate()
     submitPage()
-    WhenIsBabyDue
   }
 }

@@ -22,13 +22,13 @@ object AdoptionPlaced extends BasePage {
 
   val title = "Has the child already been placed with you or your partner?"
 
-  def selectYes = {
+  def selectYes() = {
     onPage(title)
     click("value")
     submitPage()
   }
 
-  def selectNo = {
+  def selectNo() = {
     onPage(title)
     click("value-no")
     submitPage()

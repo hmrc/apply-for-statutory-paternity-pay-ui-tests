@@ -43,7 +43,7 @@ trait BasePage extends BrowserDriver with Matchers {
   val todayMonth: String = LocalDate.now.getMonthValue.toString
   val todayYear: String  = LocalDate.now.getYear.toString
 
-  def enterDOB(): Unit = {
+  def enterYesterdaysDate(): Unit = {
     findByID("value.day").sendKeys(yesterdayDay)
     findByID("value.month").sendKeys(yesterdayMonth)
     findByID("value.year").sendKeys(yesterdayYear)

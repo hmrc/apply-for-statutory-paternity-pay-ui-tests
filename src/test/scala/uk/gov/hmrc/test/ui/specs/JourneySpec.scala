@@ -179,6 +179,66 @@ class JourneySpec extends BaseSpec {
       YourName.onPage(YourName.title)
     }
 
+    Scenario(
+      "Adopting from abroad parent in NI, " +
+        "where the child has arrived in the UK.",
+      ZapTests
+    ) {
+      Given("I am on the Apply for SSP Home Page")
+      StartPage.loadPage.startApplication
+
+      When("I provide details")
+      WhereDoYouLive.selectNorthernIreland
+      AdoptingOrParentalOrder.selectYes
+      ApplyingForStatutoryAdoptionPay.selectNo
+      AdoptingFromAbroad.selectYes
+      ReasonForRequesting.selectAdopting
+      MarriageCivilPartnershipAdopting.selectYes
+      CaringResponsibility.selectYes
+      TimeOffToCareForChild.selectYes
+      YourName.enterName
+      YourNino.enterNino
+      AdoptionNotificationDate.enterNotificationDate()
+      HasChildEnteredUk.selectYes
+      DateChildEnteredUk.enterDateEnteredUk()
+      HowLongForPaternityLeave.select1Week
+      DateYouWantSPToStart.enterStartDateTomorrow
+
+      Then("I confirm my answers and will be given the option to download the form")
+      CheckYourAnswers.confirmAnswers
+      Confirmation.result should be("Your application form is ready to send to your employer")
+    }
+
+    Scenario(
+      "Adopting from abroad parent in England, " +
+        "where the child has not arrived in the UK.",
+      ZapTests
+    ) {
+      Given("I am on the Apply for SSP Home Page")
+      StartPage.loadPage.startApplication
+
+      When("I provide details")
+      WhereDoYouLive.selectEngland
+      AdoptingOrParentalOrder.selectYes
+      ApplyingForStatutoryAdoptionPay.selectNo
+      AdoptingFromAbroad.selectYes
+      ReasonForRequesting.selectAdopting
+      MarriageCivilPartnershipAdopting.selectYes
+      CaringResponsibility.selectYes
+      TimeOffToCareForChild.selectYes
+      YourName.enterName
+      YourNino.enterNino
+      AdoptionNotificationDate.enterNotificationDate()
+      HasChildEnteredUk.selectNo()
+      DateChildExpectedToEnterUk.enterDateExpectedToEnterUk()
+      HowLongForPaternityLeave.select1Week
+      DateYouWantSPToStart.enterStartDate(LocalDate.now().plusDays(2))
+
+      Then("I confirm my answers and will be given the option to download the form")
+      CheckYourAnswers.confirmAnswers
+      Confirmation.result should be("Your application form is ready to send to your employer")
+    }
+
   }
 
   Feature("Kickout Journeys") {
