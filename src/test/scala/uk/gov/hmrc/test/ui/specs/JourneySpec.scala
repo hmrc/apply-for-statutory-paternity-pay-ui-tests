@@ -49,7 +49,7 @@ class JourneySpec extends BaseSpec {
       WhenWasBabyBorn.enterBabyDOB
       WhenWasBabyDue.enterBabyDueDate
       HowLongForPaternityLeave.select1Week
-      DateYouWantSPToStart.enterStartDate
+      DateYouWantSPToStart.enterStartDateToday
 
       Then("I confirm my answers and will be given the option to download the form")
       CheckYourAnswers.confirmAnswers
@@ -80,7 +80,7 @@ class JourneySpec extends BaseSpec {
       HasBabyBeenBornYet.selectNo
       WhenIsBabyDue.enterBabyDueDate()
       HowLongForPaternityLeave.select1Week
-      DateYouWantSPToStart.enterStartDateDue
+      DateYouWantSPToStart.enterStartDateTomorrow
 
       Then("I confirm my answers and will be given the option to download the form")
       CheckYourAnswers.confirmAnswers
@@ -90,7 +90,8 @@ class JourneySpec extends BaseSpec {
     Scenario(
       "Adoptive parent in England " +
         "in an enduring family relationship, " +
-        "who will be using leave to support their partner.",
+        "who will be using leave to support their partner, " +
+        "when the child has been placed already.",
       ZapTests
     ) {
       Given("I am on the Apply for SSP Home Page")
@@ -106,9 +107,17 @@ class JourneySpec extends BaseSpec {
       EnduringFamilyRelationshipAdopting.selectYes
       CaringResponsibility.selectYes
       TimeOffToCareForChild.selectYes
+      YourName.enterName
+      YourNino.enterNino
+      AdoptionMatchDate.enterMatchDate()
+      AdoptionPlaced.selectYes
+      AdoptionPlacedDate.enterPlacedDate()
+      HowLongForPaternityLeave.select1Week
+      DateYouWantSPToStart.enterStartDateTomorrow
 
-      Then("I will reach the 'What is your name' page")
-      YourName.onPage(YourName.title)
+      Then("I confirm my answers and will be given the option to download the form")
+      CheckYourAnswers.confirmAnswers
+      Confirmation.result should be("Your application form is ready to send to your employer")
     }
 
     Scenario(

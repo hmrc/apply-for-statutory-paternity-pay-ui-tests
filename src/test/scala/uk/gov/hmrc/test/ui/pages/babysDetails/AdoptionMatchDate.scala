@@ -14,26 +14,18 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages.paternityDetails
+package uk.gov.hmrc.test.ui.pages.babysDetails
 
-import uk.gov.hmrc.test.ui.pages.{BasePage, CheckYourAnswers}
+import uk.gov.hmrc.test.ui.pages.BasePage
+import uk.gov.hmrc.test.ui.pages.paternityDetails.DateYouWantSPToStart
 
-object HowLongForPaternityLeave extends BasePage {
+object AdoptionMatchDate extends BasePage {
 
-  val title = "How long will you be on Paternity Leave for?"
+  val title = "What date did the adoption agency tell you or your partner that you had been matched with the child?"
 
-  def select1Week: CheckYourAnswers.type = {
+  def enterMatchDate() = {
     onPage(title)
-    click("value_0")
+    enterTodaysDate()
     submitPage()
-    CheckYourAnswers
   }
-
-  def select2Week: CheckYourAnswers.type = {
-    onPage(title)
-    click("value_1")
-    submitPage()
-    CheckYourAnswers
-  }
-
 }

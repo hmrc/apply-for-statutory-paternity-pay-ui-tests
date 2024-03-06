@@ -14,26 +14,24 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages.paternityDetails
+package uk.gov.hmrc.test.ui.pages.babysDetails
 
-import uk.gov.hmrc.test.ui.pages.{BasePage, CheckYourAnswers}
+import uk.gov.hmrc.test.ui.pages.BasePage
 
-object HowLongForPaternityLeave extends BasePage {
+object AdoptionPlaced extends BasePage {
 
-  val title = "How long will you be on Paternity Leave for?"
+  val title = "Has the child already been placed with you or your partner?"
 
-  def select1Week: CheckYourAnswers.type = {
+  def selectYes = {
     onPage(title)
-    click("value_0")
+    click("value")
     submitPage()
-    CheckYourAnswers
   }
 
-  def select2Week: CheckYourAnswers.type = {
+  def selectNo = {
     onPage(title)
-    click("value_1")
+    click("value-no")
     submitPage()
-    CheckYourAnswers
   }
 
 }
