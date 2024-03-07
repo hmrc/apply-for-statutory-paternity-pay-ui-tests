@@ -17,15 +17,15 @@
 package uk.gov.hmrc.test.ui.pages.babysDetails
 
 import uk.gov.hmrc.test.ui.pages.BasePage
+import uk.gov.hmrc.test.ui.pages.paternityDetails.DateYouWantSPToStart
 
-object WhenWasBabyBorn extends BasePage {
+object AdoptionMatchDate extends BasePage {
 
-  val title = "What date was the baby born?"
+  val title = "What date did the adoption agency tell you or your partner that you had been matched with the child?"
 
-  def enterBabyDOB: WhenIsBabyDue.type = {
+  def enterMatchDate() = {
     onPage(title)
-    enterYesterdaysDate()
+    enterTodaysDate()
     submitPage()
-    WhenIsBabyDue
   }
 }

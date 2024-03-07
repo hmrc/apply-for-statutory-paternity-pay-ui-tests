@@ -43,12 +43,12 @@ trait BasePage extends BrowserDriver with Matchers {
   val todayMonth: String = LocalDate.now.getMonthValue.toString
   val todayYear: String  = LocalDate.now.getYear.toString
 
-  def enterDOB(): Unit = {
+  def enterYesterdaysDate(): Unit = {
     findByID("value.day").sendKeys(yesterdayDay)
     findByID("value.month").sendKeys(yesterdayMonth)
     findByID("value.year").sendKeys(yesterdayYear)
   }
-  def enterDate(): Unit = {
+  def enterTodaysDate(): Unit = {
     findByID("value.day").sendKeys(todayDay)
     findByID("value.month").sendKeys(todayMonth)
     findByID("value.year").sendKeys(todayYear)
@@ -59,6 +59,13 @@ trait BasePage extends BrowserDriver with Matchers {
     findByID("value.month").sendKeys(tomorrowMonth)
     findByID("value.year").sendKeys(tomorrowYear)
   }
+
+  def enterDate(date: LocalDate): Unit = {
+    findByID("value.day").sendKeys(date.getDayOfMonth.toString)
+    findByID("value.month").sendKeys(date.getMonthValue.toString)
+    findByID("value.year").sendKeys(date.getYear.toString)
+  }
+
   val random = new Random
 
   def submitPage(): Unit =

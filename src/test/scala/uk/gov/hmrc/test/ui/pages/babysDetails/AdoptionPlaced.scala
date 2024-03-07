@@ -18,14 +18,20 @@ package uk.gov.hmrc.test.ui.pages.babysDetails
 
 import uk.gov.hmrc.test.ui.pages.BasePage
 
-object WhenWasBabyBorn extends BasePage {
+object AdoptionPlaced extends BasePage {
 
-  val title = "What date was the baby born?"
+  val title = "Has the child already been placed with you or your partner?"
 
-  def enterBabyDOB: WhenIsBabyDue.type = {
+  def selectYes() = {
     onPage(title)
-    enterYesterdaysDate()
+    click("value")
     submitPage()
-    WhenIsBabyDue
   }
+
+  def selectNo() = {
+    onPage(title)
+    click("value-no")
+    submitPage()
+  }
+
 }

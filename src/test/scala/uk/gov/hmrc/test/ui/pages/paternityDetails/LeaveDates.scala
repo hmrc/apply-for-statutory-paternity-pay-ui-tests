@@ -14,18 +14,32 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages.babysDetails
+package uk.gov.hmrc.test.ui.pages.paternityDetails
 
-import uk.gov.hmrc.test.ui.pages.BasePage
+import uk.gov.hmrc.test.ui.pages.{BasePage, CheckYourAnswers}
 
-object WhenWasBabyBorn extends BasePage {
+object LeaveDates extends BasePage {
 
-  val title = "What date was the baby born?"
+  val title = "Leave dates"
 
-  def enterBabyDOB: WhenIsBabyDue.type = {
+  def select1Week(): CheckYourAnswers.type = {
     onPage(title)
-    enterYesterdaysDate()
+    click("value_0")
     submitPage()
-    WhenIsBabyDue
+    CheckYourAnswers
   }
+
+  def select2Week(): CheckYourAnswers.type = {
+    onPage(title)
+    click("value_1")
+    submitPage()
+    CheckYourAnswers
+  }
+
+  def selectNotSure() = {
+    onPage(title)
+    click("value_2")
+    submitPage()
+  }
+
 }

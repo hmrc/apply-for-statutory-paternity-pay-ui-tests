@@ -14,18 +14,19 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages.babysDetails
+package uk.gov.hmrc.test.ui.pages.paternityDetails
 
 import uk.gov.hmrc.test.ui.pages.BasePage
 
-object WhenWasBabyBorn extends BasePage {
+import java.time.LocalDate
 
-  val title = "What date was the baby born?"
+object SecondWeekOfLeave extends BasePage {
 
-  def enterBabyDOB: WhenIsBabyDue.type = {
+  val title = "What is the start date of your second week of leave? (optional)"
+
+  def enterStartDate(date: LocalDate) = {
     onPage(title)
-    enterYesterdaysDate()
+    enterDate(date)
     submitPage()
-    WhenIsBabyDue
   }
 }

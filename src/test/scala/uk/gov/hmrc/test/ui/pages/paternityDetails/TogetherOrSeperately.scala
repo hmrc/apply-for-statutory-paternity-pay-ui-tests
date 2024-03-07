@@ -14,18 +14,23 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages.babysDetails
+package uk.gov.hmrc.test.ui.pages.paternityDetails
 
-import uk.gov.hmrc.test.ui.pages.BasePage
+import uk.gov.hmrc.test.ui.pages.{BasePage}
 
-object WhenWasBabyBorn extends BasePage {
+object TogetherOrSeperately extends BasePage {
 
-  val title = "What date was the baby born?"
+  val title = "Would you like to take your leave together or separately?"
 
-  def enterBabyDOB: WhenIsBabyDue.type = {
+  def together() = {
     onPage(title)
-    enterYesterdaysDate()
+    click("value_0")
     submitPage()
-    WhenIsBabyDue
+  }
+
+  def separately() = {
+    onPage(title)
+    click("value_1")
+    submitPage()
   }
 }

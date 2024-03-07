@@ -29,4 +29,11 @@ object HowLongForPaternityLeave extends BasePage {
     CheckYourAnswers
   }
 
+  def select2Week: CheckYourAnswers.type = {
+    onPage(title)
+    click("value_1")
+    submitPage()
+    CheckYourAnswers
+  }
+
 }

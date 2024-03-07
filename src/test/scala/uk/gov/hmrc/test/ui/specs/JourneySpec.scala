@@ -24,9 +24,11 @@ import uk.gov.hmrc.test.ui.pages.personalDetails._
 import uk.gov.hmrc.test.ui.pages.relationshipWithChild._
 import uk.gov.hmrc.test.ui.specs.tags.ZapTests
 
+import java.time.LocalDate
+
 class JourneySpec extends BaseSpec {
 
-  Feature("Journeys for completing form and generating PDF") {
+  Feature("NI and pre-April 2024 journeys") {
 
     Scenario(
       "Biological parent in England " +
@@ -48,8 +50,8 @@ class JourneySpec extends BaseSpec {
       HasBabyBeenBornYet.selectYes
       WhenWasBabyBorn.enterBabyDOB
       WhenWasBabyDue.enterBabyDueDate
-      DateYouWantSPToStart.enterStartDate
       HowLongForPaternityLeave.select1Week
+      DateYouWantSPToStart.enterStartDateToday
 
       Then("I confirm my answers and will be given the option to download the form")
       CheckYourAnswers.confirmAnswers
@@ -79,8 +81,8 @@ class JourneySpec extends BaseSpec {
       YourNino.enterNino
       HasBabyBeenBornYet.selectNo
       WhenIsBabyDue.enterBabyDueDate()
-      DateYouWantSPToStart.enterStartDateDue
       HowLongForPaternityLeave.select1Week
+      DateYouWantSPToStart.enterStartDateTomorrow
 
       Then("I confirm my answers and will be given the option to download the form")
       CheckYourAnswers.confirmAnswers
@@ -90,7 +92,8 @@ class JourneySpec extends BaseSpec {
     Scenario(
       "Adoptive parent in England " +
         "in an enduring family relationship, " +
-        "who will be using leave to support their partner.",
+        "who will be using leave to support their partner, " +
+        "when the child has been placed already.",
       ZapTests
     ) {
       Given("I am on the Apply for SSP Home Page")
@@ -106,15 +109,24 @@ class JourneySpec extends BaseSpec {
       EnduringFamilyRelationshipAdopting.selectYes
       CaringResponsibility.selectYes
       TimeOffToCareForChild.selectYes
+      YourName.enterName
+      YourNino.enterNino
+      AdoptionMatchDate.enterMatchDate()
+      AdoptionPlaced.selectYes()
+      AdoptionPlacedDate.enterPlacedDate()
+      HowLongForPaternityLeave.select1Week
+      DateYouWantSPToStart.enterStartDateTomorrow
 
-      Then("I will reach the 'What is your name' page")
-      YourName.onPage(YourName.title)
+      Then("I confirm my answers and will be given the option to download the form")
+      CheckYourAnswers.confirmAnswers
+      Confirmation.result should be("Your application form is ready to send to your employer")
     }
 
     Scenario(
       "Supporting adoptive parent in England " +
         "in an enduring family relationship, " +
-        "who will be using leave to support their partner.",
+        "who will be using leave to support their partner, " +
+        "when the child has not been placed yet.",
       ZapTests
     ) {
       Given("I am on the Apply for SSP Home Page")
@@ -130,9 +142,17 @@ class JourneySpec extends BaseSpec {
       EnduringFamilyRelationshipSupportingAdopting.selectYes
       CaringResponsibility.selectYes
       TimeOffToCareForChild.selectYes
+      YourName.enterName
+      YourNino.enterNino
+      AdoptionMatchDate.enterMatchDate()
+      AdoptionPlaced.selectNo()
+      AdoptionExpectedPlacedDate.enterExpectedDate()
+      HowLongForPaternityLeave.select1Week
+      DateYouWantSPToStart.enterStartDate(LocalDate.now().plusDays(2))
 
-      Then("I will reach the 'What is your name' page")
-      YourName.onPage(YourName.title)
+      Then("I confirm my answers and will be given the option to download the form")
+      CheckYourAnswers.confirmAnswers
+      Confirmation.result should be("Your application form is ready to send to your employer")
     }
 
     Scenario(
@@ -159,6 +179,173 @@ class JourneySpec extends BaseSpec {
       YourName.onPage(YourName.title)
     }
 
+    Scenario(
+      "Adopting from abroad parent in NI, " +
+        "where the child has arrived in the UK.",
+      ZapTests
+    ) {
+      Given("I am on the Apply for SSP Home Page")
+      StartPage.loadPage.startApplication
+
+      When("I provide details")
+      WhereDoYouLive.selectNorthernIreland
+      AdoptingOrParentalOrder.selectYes
+      ApplyingForStatutoryAdoptionPay.selectNo
+      AdoptingFromAbroad.selectYes
+      ReasonForRequesting.selectAdopting
+      MarriageCivilPartnershipAdopting.selectYes
+      CaringResponsibility.selectYes
+      TimeOffToCareForChild.selectYes
+      YourName.enterName
+      YourNino.enterNino
+      AdoptionNotificationDate.enterNotificationDate()
+      HasChildEnteredUk.selectYes()
+      DateChildEnteredUk.enterDateEnteredUk()
+      HowLongForPaternityLeave.select1Week
+      DateYouWantSPToStart.enterStartDateTomorrow
+
+      Then("I confirm my answers and will be given the option to download the form")
+      CheckYourAnswers.confirmAnswers
+      Confirmation.result should be("Your application form is ready to send to your employer")
+    }
+
+    Scenario(
+      "Adopting from abroad parent in England, " +
+        "where the child has not arrived in the UK.",
+      ZapTests
+    ) {
+      Given("I am on the Apply for SSP Home Page")
+      StartPage.loadPage.startApplication
+
+      When("I provide details")
+      WhereDoYouLive.selectEngland
+      AdoptingOrParentalOrder.selectYes
+      ApplyingForStatutoryAdoptionPay.selectNo
+      AdoptingFromAbroad.selectYes
+      ReasonForRequesting.selectAdopting
+      MarriageCivilPartnershipAdopting.selectYes
+      CaringResponsibility.selectYes
+      TimeOffToCareForChild.selectYes
+      YourName.enterName
+      YourNino.enterNino
+      AdoptionNotificationDate.enterNotificationDate()
+      HasChildEnteredUk.selectNo()
+      DateChildExpectedToEnterUk.enterDateExpectedToEnterUk()
+      HowLongForPaternityLeave.select1Week
+      DateYouWantSPToStart.enterStartDate(LocalDate.now().plusDays(2))
+
+      Then("I confirm my answers and will be given the option to download the form")
+      CheckYourAnswers.confirmAnswers
+      Confirmation.result should be("Your application form is ready to send to your employer")
+    }
+
+  }
+
+  Feature("Post-April 2024 England Scotland Wales journeys") {
+
+    Scenario(
+      "Biological parent in England " +
+        "taking two separate weeks of leave",
+      ZapTests
+    ) {
+      Given("I am on the Apply for SSP Home Page")
+      StartPage.loadPage.startApplication
+
+      When("I provide details")
+      WhereDoYouLive.selectEngland
+      AdoptingOrParentalOrder.selectNo
+      BiologicalFather.selectYes
+      CaringResponsibility.selectYes
+      TimeOffToCareForChild.selectYes
+      YourName.enterName
+      YourNino.enterNino
+      HasBabyBeenBornYet.selectNo
+      WhenIsBabyDue.enterBabyDueDate(LocalDate.of(2024, 4, 10))
+      LeaveDates.select2Week()
+      TogetherOrSeperately.separately()
+      FirstWeekOfLeave.enterStartDate(LocalDate.of(2024, 4, 11))
+      SecondWeekOfLeave.enterStartDate(LocalDate.of(2024, 4, 30))
+
+      Then("I confirm my answers and will be given the option to download the form")
+      CheckYourAnswers.confirmAnswers
+      Confirmation.result should be("Your application form is ready to send to your employer")
+    }
+
+    Scenario(
+      "Biological parent in England " +
+        "taking one week of leave",
+      ZapTests
+    ) {
+      Given("I am on the Apply for SSP Home Page")
+      StartPage.loadPage.startApplication
+
+      When("I provide details")
+      WhereDoYouLive.selectEngland
+      AdoptingOrParentalOrder.selectNo
+      BiologicalFather.selectYes
+      CaringResponsibility.selectYes
+      TimeOffToCareForChild.selectYes
+      YourName.enterName
+      YourNino.enterNino
+      HasBabyBeenBornYet.selectNo
+      WhenIsBabyDue.enterBabyDueDate(LocalDate.of(2024, 4, 10))
+      LeaveDates.select1Week()
+      SingleWeekOfLeave.enterStartDate(LocalDate.of(2024, 4, 11))
+
+      Then("I confirm my answers and will be given the option to download the form")
+      CheckYourAnswers.confirmAnswers
+      Confirmation.result should be("Your application form is ready to send to your employer")
+    }
+
+    Scenario(
+      "Biological parent in England " +
+        "who is not sure what leave they will take",
+      ZapTests
+    ) {
+      Given("I am on the Apply for SSP Home Page")
+      StartPage.loadPage.startApplication
+
+      When("I provide details")
+      WhereDoYouLive.selectEngland
+      AdoptingOrParentalOrder.selectNo
+      BiologicalFather.selectYes
+      CaringResponsibility.selectYes
+      TimeOffToCareForChild.selectYes
+      YourName.enterName
+      YourNino.enterNino
+      HasBabyBeenBornYet.selectNo
+      WhenIsBabyDue.enterBabyDueDate(LocalDate.of(2024, 4, 10))
+      LeaveDates.selectNotSure()
+
+      Then("I confirm my answers and will be given the option to download the form")
+      CheckYourAnswers.confirmAnswers
+      Confirmation.result should be("Your application form is ready to send to your employer")
+    }
+
+    Scenario(
+      "Biological parent in NI ",
+      ZapTests
+    ) {
+      Given("I am on the Apply for SSP Home Page")
+      StartPage.loadPage.startApplication
+
+      When("I provide details")
+      WhereDoYouLive.selectNorthernIreland
+      AdoptingOrParentalOrder.selectNo
+      BiologicalFather.selectYes
+      CaringResponsibility.selectYes
+      TimeOffToCareForChild.selectYes
+      YourName.enterName
+      YourNino.enterNino
+      HasBabyBeenBornYet.selectNo
+      WhenIsBabyDue.enterBabyDueDate(LocalDate.of(2024, 4, 10))
+      HowLongForPaternityLeave.select1Week
+      DateYouWantSPToStart.enterStartDate(LocalDate.of(2024, 4, 11))
+
+      Then("I confirm my answers and will be given the option to download the form")
+      CheckYourAnswers.confirmAnswers
+      Confirmation.result should be("Your application form is ready to send to your employer")
+    }
   }
 
   Feature("Kickout Journeys") {
