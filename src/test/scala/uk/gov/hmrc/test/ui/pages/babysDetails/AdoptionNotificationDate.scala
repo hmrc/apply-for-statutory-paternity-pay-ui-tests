@@ -18,6 +18,8 @@ package uk.gov.hmrc.test.ui.pages.babysDetails
 
 import uk.gov.hmrc.test.ui.pages.BasePage
 
+import java.time.LocalDate
+
 object AdoptionNotificationDate extends BasePage {
 
   val title = "On what date were you or your partner sent official notification?"
@@ -25,6 +27,12 @@ object AdoptionNotificationDate extends BasePage {
   def enterNotificationDate() = {
     onPage(title)
     enterTodaysDate()
+    submitPage()
+  }
+
+  def enterNotificationDate(date: LocalDate) = {
+    onPage(title)
+    enterDate(date)
     submitPage()
   }
 }

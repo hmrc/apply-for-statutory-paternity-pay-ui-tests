@@ -19,6 +19,8 @@ package uk.gov.hmrc.test.ui.pages.babysDetails
 import uk.gov.hmrc.test.ui.pages.BasePage
 import uk.gov.hmrc.test.ui.pages.paternityDetails.DateYouWantSPToStart
 
+import java.time.LocalDate
+
 object WhenWasBabyDue extends BasePage {
 
   val title = "What date was the baby due?"
@@ -26,6 +28,13 @@ object WhenWasBabyDue extends BasePage {
   def enterBabyDueDate: DateYouWantSPToStart.type = {
     onPage(title)
     enterTodaysDate()
+    submitPage()
+    DateYouWantSPToStart
+  }
+
+  def enterBabyDueDate(date: LocalDate): DateYouWantSPToStart.type = {
+    onPage(title)
+    enterDate(date)
     submitPage()
     DateYouWantSPToStart
   }
