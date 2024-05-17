@@ -18,6 +18,8 @@ package uk.gov.hmrc.test.ui.pages.babysDetails
 
 import uk.gov.hmrc.test.ui.pages.BasePage
 
+import java.time.LocalDate
+
 object AdoptionExpectedPlacedDate extends BasePage {
 
   val title = "What date is the child expected to be placed?"
@@ -25,6 +27,12 @@ object AdoptionExpectedPlacedDate extends BasePage {
   def enterExpectedDate() = {
     onPage(title)
     enterTomorrowDate()
+    submitPage()
+  }
+
+  def enterExpectedDate(date: LocalDate) = {
+    onPage(title)
+    enterDate(date)
     submitPage()
   }
 }

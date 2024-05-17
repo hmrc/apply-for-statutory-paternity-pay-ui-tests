@@ -18,13 +18,15 @@ package uk.gov.hmrc.test.ui.pages.babysDetails
 
 import uk.gov.hmrc.test.ui.pages.BasePage
 
+import java.time.LocalDate
+
 object WhenWasBabyBorn extends BasePage {
 
   val title = "What date was the baby born?"
 
-  def enterBabyDOB: WhenIsBabyDue.type = {
+  def enterBabyDOB(date: LocalDate): WhenIsBabyDue.type = {
     onPage(title)
-    enterYesterdaysDate()
+    enterDate(date)
     submitPage()
     WhenIsBabyDue
   }

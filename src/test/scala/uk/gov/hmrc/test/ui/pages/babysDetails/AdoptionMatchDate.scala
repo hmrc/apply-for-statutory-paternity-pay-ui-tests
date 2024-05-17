@@ -19,6 +19,8 @@ package uk.gov.hmrc.test.ui.pages.babysDetails
 import uk.gov.hmrc.test.ui.pages.BasePage
 import uk.gov.hmrc.test.ui.pages.paternityDetails.DateYouWantSPToStart
 
+import java.time.LocalDate
+
 object AdoptionMatchDate extends BasePage {
 
   val title = "What date did the adoption agency tell you or your partner that you had been matched with the child?"
@@ -26,6 +28,12 @@ object AdoptionMatchDate extends BasePage {
   def enterMatchDate() = {
     onPage(title)
     enterTodaysDate()
+    submitPage()
+  }
+
+  def enterMatchDate(date: LocalDate) = {
+    onPage(title)
+    enterDate(date)
     submitPage()
   }
 }
