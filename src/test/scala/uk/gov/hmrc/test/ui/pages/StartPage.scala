@@ -17,11 +17,11 @@
 package uk.gov.hmrc.test.ui.pages
 
 import org.scalatest.matchers.should.Matchers
-import uk.gov.hmrc.test.ui.conf.TestConfiguration
+import uk.gov.hmrc.configuration.TestEnvironment
 import uk.gov.hmrc.test.ui.pages.applicationDetails.WhereDoYouLive
 
 object StartPage extends BasePage with Matchers {
-  val url: String   = TestConfiguration.url("apply-for-statutory-paternity-pay-frontend")
+  val url: String   = TestEnvironment.url("apply-for-statutory-paternity-pay-frontend")
   val title: String = "Ask your employer for Statutory Paternity Pay or Paternity Leave or both - GOV.UK"
 
   def loadPage: this.type = {

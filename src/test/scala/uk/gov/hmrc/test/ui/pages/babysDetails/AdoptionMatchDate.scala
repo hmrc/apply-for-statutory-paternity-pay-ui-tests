@@ -17,7 +17,6 @@
 package uk.gov.hmrc.test.ui.pages.babysDetails
 
 import uk.gov.hmrc.test.ui.pages.BasePage
-import uk.gov.hmrc.test.ui.pages.paternityDetails.DateYouWantSPToStart
 
 import java.time.LocalDate
 
