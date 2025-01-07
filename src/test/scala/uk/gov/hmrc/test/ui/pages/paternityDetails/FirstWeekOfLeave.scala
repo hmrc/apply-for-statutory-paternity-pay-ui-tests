@@ -17,7 +17,6 @@
 package uk.gov.hmrc.test.ui.pages.paternityDetails
 
 import uk.gov.hmrc.test.ui.pages.BasePage
-import uk.gov.hmrc.test.ui.pages.babysDetails.WhenWasBabyDue
 
 import java.time.LocalDate
 
