@@ -25,7 +25,7 @@ object StartPage extends BasePage with Matchers {
   val title: String = "Ask your employer for Statutory Paternity Pay or Paternity Leave or both - GOV.UK"
 
   def loadPage: this.type = {
-    driver.navigate().to(url)
+    get(url)
     onHomePage()
     this
   }
@@ -35,5 +35,5 @@ object StartPage extends BasePage with Matchers {
     WhereDoYouLive
   }
 
-  def onHomePage(): Unit = driver.getTitle shouldBe title
+  def onHomePage(): Unit = getTitle shouldBe title
 }
