@@ -24,7 +24,7 @@ import java.time.LocalDate
 object DateYouWantSPToStart extends BasePage {
 
   val title =
-    "What date would you like your Statutory Paternity Pay and/or paternity leave to start?"
+    "When do you want your Statutory Paternity Pay and/or Paternity leave to start? (optional)"
 
   def enterStartDateToday: WhenWasBabyDue.type = {
     onPage(title)

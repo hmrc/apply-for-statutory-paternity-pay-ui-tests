@@ -28,6 +28,10 @@ import java.time.LocalDate
 
 class JourneySpec extends BaseSpec {
 
+  val pastBabyDueDate: LocalDate = LocalDate.now.minusMonths(1)
+  val futureBabyDueDate: LocalDate = LocalDate.now.plusMonths(1)
+  val childArrivedDate: LocalDate = LocalDate.now.minusMonths(1)
+
   Feature("NI and pre-April 6th 2024 journeys") {
 
     Scenario(
@@ -48,10 +52,10 @@ class JourneySpec extends BaseSpec {
       YourName.enterName
       YourNino.enterNino
       HasBabyBeenBornYet.selectYes
-      WhenWasBabyBorn.enterBabyDOB(LocalDate.of(2024, 4, 1))
-      WhenWasBabyDue.enterBabyDueDate(LocalDate.of(2024, 4, 1))
-      HowLongForPaternityLeave.select1Week
-      DateYouWantSPToStart.enterStartDate(LocalDate.of(2024, 4, 1))
+      WhenWasBabyBorn.enterBabyDOB(pastBabyDueDate)
+      WhenWasBabyDue.enterBabyDueDate(pastBabyDueDate)
+      LeaveDates.select1Week()
+      DateYouWantSPToStart.enterStartDate(pastBabyDueDate)
 
       Then("I confirm my answers and will be given the option to download the form")
       CheckYourAnswers.confirmAnswers
@@ -80,9 +84,9 @@ class JourneySpec extends BaseSpec {
       YourName.enterName
       YourNino.enterNino
       HasBabyBeenBornYet.selectNo
-      WhenIsBabyDue.enterBabyDueDate(LocalDate.of(2024, 4, 1))
-      HowLongForPaternityLeave.select1Week
-      DateYouWantSPToStart.enterStartDate(LocalDate.of(2024, 4, 1))
+      WhenIsBabyDue.enterBabyDueDate(futureBabyDueDate)
+      LeaveDates.select1Week()
+      DateYouWantSPToStart.enterStartDate(futureBabyDueDate)
 
       Then("I confirm my answers and will be given the option to download the form")
       CheckYourAnswers.confirmAnswers
@@ -111,11 +115,11 @@ class JourneySpec extends BaseSpec {
       TimeOffToCareForChild.selectYes
       YourName.enterName
       YourNino.enterNino
-      AdoptionMatchDate.enterMatchDate(LocalDate.of(2024, 4, 1))
+      AdoptionMatchDate.enterMatchDate(pastBabyDueDate)
       AdoptionPlaced.selectYes()
-      AdoptionPlacedDate.enterPlacedDate(LocalDate.of(2024, 4, 1))
-      HowLongForPaternityLeave.select1Week
-      DateYouWantSPToStart.enterStartDate(LocalDate.of(2024, 4, 1))
+      AdoptionPlacedDate.enterPlacedDate(pastBabyDueDate)
+      LeaveDates.select1Week()
+      DateYouWantSPToStart.enterStartDate(pastBabyDueDate)
 
       Then("I confirm my answers and will be given the option to download the form")
       CheckYourAnswers.confirmAnswers
@@ -165,11 +169,11 @@ class JourneySpec extends BaseSpec {
       TimeOffToCareForChild.selectYes
       YourName.enterName
       YourNino.enterNino
-      AdoptionNotificationDate.enterNotificationDate(LocalDate.of(2024, 4, 1))
+      AdoptionNotificationDate.enterNotificationDate(childArrivedDate)
       HasChildEnteredUk.selectYes()
-      DateChildEnteredUk.enterDateEnteredUk(LocalDate.of(2024, 4, 2))
+      DateChildEnteredUk.enterDateEnteredUk(childArrivedDate)
       HowLongForPaternityLeave.select1Week
-      DateYouWantSPToStart.enterStartDate(LocalDate.of(2024, 4, 3))
+      DateYouWantSPToStartNI.enterStartDate(childArrivedDate.plusDays(1))
 
       Then("I confirm my answers and will be given the option to download the form")
       CheckYourAnswers.confirmAnswers
@@ -197,11 +201,11 @@ class JourneySpec extends BaseSpec {
       YourName.enterName
       YourNino.enterNino
       HasBabyBeenBornYet.selectNo
-      WhenIsBabyDue.enterBabyDueDate(LocalDate.of(2024, 4, 10))
+      WhenIsBabyDue.enterBabyDueDate(pastBabyDueDate)
       LeaveDates.select2Week()
       TogetherOrSeperately.separately()
-      FirstWeekOfLeave.enterStartDate(LocalDate.of(2024, 4, 11))
-      SecondWeekOfLeave.enterStartDate(LocalDate.of(2024, 4, 30))
+      FirstWeekOfLeave.enterStartDate(pastBabyDueDate)
+      SecondWeekOfLeave.enterStartDate(pastBabyDueDate.plusWeeks(1))
 
       Then("I confirm my answers and will be given the option to download the form")
       CheckYourAnswers.confirmAnswers
@@ -225,9 +229,9 @@ class JourneySpec extends BaseSpec {
       YourName.enterName
       YourNino.enterNino
       HasBabyBeenBornYet.selectNo
-      WhenIsBabyDue.enterBabyDueDate(LocalDate.of(2024, 4, 10))
+      WhenIsBabyDue.enterBabyDueDate(pastBabyDueDate)
       LeaveDates.select1Week()
-      SingleWeekOfLeave.enterStartDate(LocalDate.of(2024, 4, 11))
+      SingleWeekOfLeave.enterStartDate(pastBabyDueDate.plusDays(1))
 
       Then("I confirm my answers and will be given the option to download the form")
       CheckYourAnswers.confirmAnswers
@@ -251,7 +255,7 @@ class JourneySpec extends BaseSpec {
       YourName.enterName
       YourNino.enterNino
       HasBabyBeenBornYet.selectNo
-      WhenIsBabyDue.enterBabyDueDate(LocalDate.of(2024, 4, 10))
+      WhenIsBabyDue.enterBabyDueDate(pastBabyDueDate)
       LeaveDates.selectNotSure()
 
       Then("I confirm my answers and will be given the option to download the form")
@@ -275,9 +279,9 @@ class JourneySpec extends BaseSpec {
       YourName.enterName
       YourNino.enterNino
       HasBabyBeenBornYet.selectNo
-      WhenIsBabyDue.enterBabyDueDate(LocalDate.of(2024, 4, 10))
+      WhenIsBabyDue.enterBabyDueDate(pastBabyDueDate)
       HowLongForPaternityLeave.select1Week
-      DateYouWantSPToStart.enterStartDate(LocalDate.of(2024, 4, 11))
+      DateYouWantSPToStartNI.enterStartDate(pastBabyDueDate.plusWeeks(1))
 
       Then("I confirm my answers and will be given the option to download the form")
       CheckYourAnswers.confirmAnswers
