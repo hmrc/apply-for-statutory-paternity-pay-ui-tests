@@ -24,6 +24,7 @@ import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.matchers.should.Matchers
 import org.scalatestplus.selenium.WebBrowser
 import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
+import org.mongodb.scala.SingleObservableFuture
 
 import scala.concurrent.Await
 import scala.concurrent.duration._

@@ -16,7 +16,7 @@
 
 package uk.gov.hmrc.test.ui.pages.personalDetails
 
-import uk.gov.hmrc.domain.Generator
+import uk.gov.hmrc.domain.NinoGenerator
 import uk.gov.hmrc.test.ui.pages.BasePage
 import uk.gov.hmrc.test.ui.pages.babysDetails.HasBabyBeenBornYet
 
@@ -24,7 +24,7 @@ object YourNino extends BasePage {
 
   val title = "What is your National Insurance number?"
 
-  private val ninoGenerator = new Generator(random)
+  private val ninoGenerator = new NinoGenerator(random)
 
   def generateNino: String = ninoGenerator.nextNino.toString()
 
