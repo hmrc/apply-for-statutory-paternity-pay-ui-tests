@@ -16,12 +16,13 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.{By, WebElement}
+import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait, Wait}
+import org.openqa.selenium.{By, StaleElementReferenceException, WebDriver, WebElement}
 import org.scalatest.matchers.should.Matchers
 import uk.gov.hmrc.selenium.component.PageObject
 import uk.gov.hmrc.selenium.webdriver.Driver
 
-import java.time.LocalDate
+import java.time.{Duration, LocalDate}
 import scala.util.Random
 
 trait BasePage extends PageObject with Matchers {
@@ -76,8 +77,15 @@ trait BasePage extends PageObject with Matchers {
     val expectedTitle = pageTitle + section
       .map(" - " + _)
       .getOrElse("") + " - Ask your employer for Statutory Paternity Pay or Paternity Leave or both - GOV.UK"
-    Driver.instance.getTitle shouldBe expectedTitle
+    fluentWait.until(ExpectedConditions.titleIs(expectedTitle)) shouldBe true
   }
+
+  private def fluentWait: Wait[WebDriver] =
+    new FluentWait[WebDriver](Driver.instance)
+      .withTimeout(Duration.ofSeconds(5))
+      .pollingEvery(Duration.ofMillis(250))
+      .ignoring(classOf[NoSuchElementException])
+      .ignoring(classOf[StaleElementReferenceException])
 }
 
 case class PageNotFoundException(s: String) extends Exception(s)
