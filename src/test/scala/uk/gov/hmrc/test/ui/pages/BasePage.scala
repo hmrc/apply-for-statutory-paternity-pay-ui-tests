@@ -16,19 +16,21 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.{By, WebElement}
+import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait, Wait}
+import org.openqa.selenium.{By, StaleElementReferenceException, WebDriver, WebElement}
 import org.scalatest.matchers.should.Matchers
-import uk.gov.hmrc.test.ui.driver.BrowserDriver
+import uk.gov.hmrc.selenium.component.PageObject
+import uk.gov.hmrc.selenium.webdriver.Driver
 
-import java.time.LocalDate
+import java.time.{Duration, LocalDate}
 import scala.util.Random
 
-trait BasePage extends BrowserDriver with Matchers {
+trait BasePage extends PageObject with Matchers {
   val continueButton = "govuk-button"
 
-  def findByID(id: String): WebElement               = driver.findElement(By.id(id))
-  def click(id: String): Unit                        = findByID(id).click()
-  def findByClassName(className: String): WebElement = driver.findElement(By.className(className))
+  def findByID(id: String): WebElement               = Driver.instance.findElement(By.id(id))
+  def click(id: String): Unit                        = click(By.id(id))
+  def findByClassName(className: String): WebElement = Driver.instance.findElement(By.className(className))
   def enter(id: String, text: String): Unit          = findByID(id).sendKeys(text)
 
   val yesterdayDay: String   = LocalDate.now.minusDays(1).getDayOfMonth.toString
@@ -69,14 +71,21 @@ trait BasePage extends BrowserDriver with Matchers {
   val random = new Random
 
   def submitPage(): Unit =
-    driver.findElement(By.className(continueButton)).click()
+    Driver.instance.findElement(By.className(continueButton)).click()
 
   def onPage(pageTitle: String, section: Option[String] = None): Unit = {
     val expectedTitle = pageTitle + section
       .map(" - " + _)
       .getOrElse("") + " - Ask your employer for Statutory Paternity Pay or Paternity Leave or both - GOV.UK"
-    driver.getTitle shouldBe expectedTitle
+    fluentWait.until(ExpectedConditions.titleIs(expectedTitle)) shouldBe true
   }
+
+  private def fluentWait: Wait[WebDriver] =
+    new FluentWait[WebDriver](Driver.instance)
+      .withTimeout(Duration.ofSeconds(5))
+      .pollingEvery(Duration.ofMillis(250))
+      .ignoring(classOf[NoSuchElementException])
+      .ignoring(classOf[StaleElementReferenceException])
 }
 
 case class PageNotFoundException(s: String) extends Exception(s)
